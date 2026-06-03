@@ -1,5 +1,4 @@
 
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -13,12 +12,14 @@ body{font-family:var(--font-sans);}
 .ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
 .cn{font-size:12px;color:var(--color-text-secondary);}
 .cv{font-size:12px;font-weight:500;color:var(--color-text-primary);}
-.dprow{display:flex;gap:5px;}
-.dpb{flex:1;text-align:center;padding:6px 2px;font-size:11px;font-weight:500;border:0.5px solid var(--color-border-secondary);border-radius:6px;cursor:pointer;color:var(--color-text-secondary);transition:all .15s;}
+.dp-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
+.dpb{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:6px 4px;font-size:11px;font-weight:500;border:0.5px solid var(--color-border-secondary);border-radius:6px;cursor:pointer;color:var(--color-text-secondary);transition:all .15s;text-align:center;}
 .dpb:hover{background:var(--color-background-secondary);}
+.dp-pct{font-size:9px;font-weight:400;opacity:.75;min-height:11px;}
 .dpb.ai{background:#dc2626;color:#fff;border-color:#dc2626;box-shadow:0 0 0 2px #dc262640;}
 .dpb.ae{background:#d97706;color:#fff;border-color:#d97706;box-shadow:0 0 0 2px #d9770640;}
 .dpb.as{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 0 0 2px #2563eb40;}
+.dpb.ao{background:#6b7280;color:#fff;border-color:#6b7280;box-shadow:0 0 0 2px #6b728040;}
 select{width:100%;padding:6px 8px;font-size:12px;border:0.5px solid var(--color-border-secondary);border-radius:6px;background:transparent;color:var(--color-text-primary);}
 input[type=range]{width:100%;}
 .asym-hints{display:flex;justify-content:space-between;font-size:9px;color:var(--color-text-tertiary);margin-top:2px;padding:0 1px;}
@@ -26,6 +27,12 @@ input[type=range]{width:100%;}
 .li{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--color-text-secondary);}
 .ld{width:10px;height:10px;border-radius:2px;}
 .tn{font-size:10px;color:var(--color-text-tertiary);margin-top:6px;line-height:1.5;}
+/* Opacidad dentro del panel PRPD */
+.ov-ctrl{margin-top:10px;padding-top:8px;border-top:0.5px solid var(--color-border-tertiary);}
+.ov-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
+.ov-lbl{font-size:10px;color:var(--color-text-tertiary);}
+.ov-val{font-size:10px;font-weight:500;color:var(--color-text-primary);}
+.ov-print{display:none;font-size:10px;color:var(--color-text-tertiary);margin-top:3px;}
 .hr{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:10px 0;}
 .rrow{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
 .rl{font-size:11px;color:var(--color-text-tertiary);min-width:72px;}
@@ -52,6 +59,11 @@ input[type=range]{width:100%;}
 .export-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;font-size:13px;font-weight:500;border:none;border-radius:var(--border-radius-md);background:var(--color-background-info);color:var(--color-text-info);cursor:pointer;transition:opacity .15s;}
 .export-btn:hover{opacity:.82;}
 canvas{display:block;}
+.vis-pnl{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px;margin-bottom:12px;}
+.vis-thumb-wrap{display:inline-block;}
+.vis-thumb-wrap img{display:block;width:auto;max-height:220px;border-radius:5px;border:0.5px solid var(--color-border-tertiary);}
+.vis-empty{height:72px;display:flex;align-items:center;justify-content:center;border-radius:6px;border:1px dashed var(--color-border-secondary);background:var(--color-background-secondary);padding:0 16px;}
+.vis-empty p{font-size:11px;color:var(--color-text-tertiary);}
 .upwrap{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:12px 14px;margin-bottom:12px;}
 .uprow{display:flex;align-items:center;gap:10px;}
 .upicon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
@@ -62,31 +74,26 @@ canvas{display:block;}
 .upbtn:hover{background:var(--color-background-secondary);}
 .upbtn.danger{color:var(--color-text-danger);border-color:var(--color-border-danger);}
 .det-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500;margin-top:6px;}
-.crop-section{margin-top:10px;padding-top:10px;border-top:0.5px solid var(--color-border-tertiary);}
-.crop-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;}
-.crop-lbl{font-size:10px;color:var(--color-text-tertiary);display:flex;justify-content:space-between;margin-bottom:3px;}
-.crop-lbl span:last-child{font-weight:500;color:var(--color-text-primary);}
-.crop-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
-.crop-header-lbl{font-size:10px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;color:var(--color-text-tertiary);}
-.reset-btn{font-size:10px;padding:2px 8px;border:0.5px solid var(--color-border-secondary);border-radius:4px;background:transparent;color:var(--color-text-tertiary);cursor:pointer;}
-.reset-btn:hover{background:var(--color-background-secondary);}
-
-/* ── Print ── */
-@media print{
-  .upwrap,.export-row,.obs-ta,.crop-section,#overlay-ctrl,#crop-ctrl,.upbtn,.reset-btn{display:none!important;}
-  .obs-print{display:block!important;}
-  .dpb{border:1px solid #ccc;background:#fff!important;color:#333!important;box-shadow:none!important;}
-  .dpb.ai{background:#dc2626!important;color:#fff!important;border-color:#dc2626!important;}
-  .dpb.ae{background:#d97706!important;color:#fff!important;border-color:#d97706!important;}
-  .dpb.as{background:#2563eb!important;color:#fff!important;border-color:#2563eb!important;}
-  body{background:#fff;color:#000;}
-  canvas{max-width:100%;}
-}
-.obs-print{display:none;font-size:12px;color:#333;white-space:pre-wrap;line-height:1.6;padding:6px 0;}
-.pdf-file-row{display:none;margin-top:6px;}
+.pdf-file-row{display:none;margin-bottom:8px;}
 .pdf-file-row.visible{display:flex;align-items:center;gap:6px;}
 .pdf-file-label{font-size:10px;color:var(--color-text-tertiary);}
 .pdf-file-name{font-size:11px;font-weight:500;color:var(--color-text-secondary);}
+@media print{
+  .upwrap,.export-row,.obs-ta,.upbtn{display:none!important;}
+  .obs-print{display:block!important;}
+  /* slider oculto en impresión, mostrar valor en texto */
+  .ov-ctrl input[type=range]{display:none!important;}
+  .ov-print{display:block!important;}
+  .dpb{border:1px solid #ccc!important;background:#fff!important;color:#333!important;box-shadow:none!important;}
+  .dpb.ai{background:#dc2626!important;color:#fff!important;border-color:#dc2626!important;}
+  .dpb.ae{background:#d97706!important;color:#fff!important;border-color:#d97706!important;}
+  .dpb.as{background:#2563eb!important;color:#fff!important;border-color:#2563eb!important;}
+  .dpb.ao{background:#6b7280!important;color:#fff!important;border-color:#6b7280!important;}
+  body{background:#fff;color:#000;}
+  canvas{max-width:100%;}
+  .vis-thumb-wrap img{max-height:220px;}
+}
+.obs-print{display:none;font-size:12px;color:#333;white-space:pre-wrap;line-height:1.6;padding:6px 0;}
 </style>
 
 <div style="margin-bottom:12px">
@@ -94,6 +101,7 @@ canvas{display:block;}
   <p class="sub">Cámara acústica Fluke II915 · Evaluación combinada: clasificación DP + análisis PRPD</p>
 </div>
 
+<!-- 1. Reporte PDF -->
 <div class="upwrap">
   <p class="slbl">Reporte PDF — Fluke II915</p>
   <div class="uprow">
@@ -104,31 +112,27 @@ canvas{display:block;}
     </div>
     <div class="uptxt">
       <p id="upttl">Adjuntar reporte PDF</p>
-      <p id="upsub">El sistema detectará el tipo de DP (pág. 3) y superpondrá el gráfico PRPD (pág. 2) automáticamente</p>
+      <p id="upsub">Tipo DP (pág. 3) · Gráfico PRPD + imagen visual (pág. 2) — recorte automático</p>
     </div>
     <button class="upbtn" onclick="document.getElementById('pdfInput').click()">Seleccionar</button>
     <button class="upbtn danger" id="clearbtn" style="display:none" onclick="clearPDF()">✕</button>
     <input type="file" id="pdfInput" accept=".pdf" style="display:none" onchange="loadPDF(this)">
   </div>
   <div id="det-row" style="display:none"><span class="det-badge" id="det-badge"></span></div>
-  <div id="overlay-ctrl" style="display:none;margin-top:10px;padding-top:10px;border-top:0.5px solid var(--color-border-tertiary)">
-    <div class="ch" style="margin-bottom:4px"><span class="cn">Opacidad overlay PDF</span><span class="cv" id="vov">50%</span></div>
-    <input type="range" min="0" max="100" value="50" step="5" oninput="sOv(+this.value)" style="width:100%">
+</div>
+
+<!-- 2. Imagen visual -->
+<div class="vis-pnl">
+  <p class="slbl">Imagen visual — Cámara acústica Fluke II915</p>
+  <div class="vis-empty" id="vis-empty">
+    <p>La imagen visual aparecerá aquí al adjuntar el reporte PDF</p>
   </div>
-  <div class="crop-section" id="crop-ctrl" style="display:none">
-    <div class="crop-header">
-      <span class="crop-header-lbl">Calibrar recorte del gráfico PRPD</span>
-      <button class="reset-btn" onclick="resetCrop()">↺ Restablecer</button>
-    </div>
-    <div class="crop-grid">
-      <div><div class="crop-lbl"><span>⬆ Borde superior</span><span id="vct">57%</span></div><input type="range" min="20" max="85" value="57" step="1" id="sct" oninput="sCropT(+this.value)"></div>
-      <div><div class="crop-lbl"><span>⬇ Borde inferior</span><span id="vcb">86%</span></div><input type="range" min="40" max="99" value="86" step="1" id="scb" oninput="sCropB(+this.value)"></div>
-      <div><div class="crop-lbl"><span>⬅ Borde izquierdo</span><span id="vcl">13%</span></div><input type="range" min="0" max="40" value="13" step="1" id="scl" oninput="sCropL(+this.value)"></div>
-      <div><div class="crop-lbl"><span>➡ Borde derecho</span><span id="vcr">97%</span></div><input type="range" min="50" max="100" value="97" step="1" id="scr" oninput="sCropR(+this.value)"></div>
-    </div>
+  <div class="vis-thumb-wrap" id="vis-thumb-wrap" style="display:none">
+    <img id="vis-img" alt="Imagen visual cámara acústica Fluke II915">
   </div>
 </div>
 
+<!-- 3. Gráfico PRPD + Parámetros -->
 <div class="g2">
   <div class="pnl">
     <p class="slbl">Gráfico PRPD</p>
@@ -140,15 +144,26 @@ canvas{display:block;}
       <div class="li"><div class="ld" style="background:#dc2626"></div>Urgente</div>
     </div>
     <p class="tn" id="tn">—</p>
+    <!-- Opacidad overlay: dentro del panel, debajo de umbrales -->
+    <div class="ov-ctrl">
+      <div class="ov-row">
+        <span class="ov-lbl">Opacidad overlay PRPD</span>
+        <span class="ov-val" id="vov">50%</span>
+      </div>
+      <input type="range" min="0" max="100" value="50" step="5" oninput="sOv(+this.value)" style="width:100%">
+      <p class="ov-print" id="ov-print">Overlay PRPD: 50%</p>
+    </div>
   </div>
+
   <div class="pnl">
     <p class="slbl">Parámetros de medición</p>
     <div class="ctrl">
       <div class="ch"><span class="cn" style="font-weight:500;color:var(--color-text-primary)">Tipo de descarga parcial</span></div>
-      <div class="dprow">
-        <div class="dpb" id="bi" onclick="setDP('int')">Interna</div>
-        <div class="dpb" id="be" onclick="setDP('ext')">Externa</div>
-        <div class="dpb" id="bs" onclick="setDP('sup')">Superficial</div>
+      <div class="dp-grid">
+        <div class="dpb" id="bi" onclick="setDP('int')"><span>Interna</span><span class="dp-pct" id="pct-int"></span></div>
+        <div class="dpb" id="be" onclick="setDP('ext')"><span>Externa</span><span class="dp-pct" id="pct-ext"></span></div>
+        <div class="dpb" id="bs" onclick="setDP('sup')"><span>Superficial</span><span class="dp-pct" id="pct-sup"></span></div>
+        <div class="dpb" id="bo" onclick="setDP('oth')"><span>Otro</span><span class="dp-pct" id="pct-oth"></span></div>
       </div>
     </div>
     <div class="hr"></div>
@@ -177,9 +192,9 @@ canvas{display:block;}
   </div>
 </div>
 
+<!-- 4. Diagnóstico -->
 <div class="pnl">
   <p class="slbl">Diagnóstico integrado</p>
-  <!-- Nombre del archivo PDF adjunto (visible solo en impresión) -->
   <div class="pdf-file-row" id="pdf-file-row">
     <span class="pdf-file-label">Reporte origen:</span>
     <span class="pdf-file-name" id="pdf-file-name"></span>
@@ -218,14 +233,13 @@ canvas{display:block;}
 </div>
 
 <script>
-let dp='int',pat='B',amp=50,asym=0,dens=2;
-let pdfChartCanvas=null,pdfFullPage=null,overlayOpacity=50;
-let pdfFileName='';
-let cropT=57,cropB=86,cropL=13,cropR=97;
-const DEFAULT_CROP={t:57,b:86,l:13,r:97};
-
-const TH={int:[25,50,75],ext:[35,60,80],sup:[40,65,85]};
-const DPN={int:'Interna',ext:'Externa',sup:'Superficial'};
+let dp='int',pat='B',amp=50,asym=0,dens=2,overlayOpacity=50;
+let pdfChartCanvas=null,pdfFullPage=null,pdfFileName='';
+const PDF_SCALE=2.5;
+const PRPD_PT={x1:122.85,y1:442.85,x2:520.71,y2:648.57};
+const VIS_PT ={x1:78.02, y1:76.22, x2:544.58,y2:387.26};
+const TH={int:[25,50,75],ext:[35,60,80],sup:[40,65,85],oth:[40,65,85]};
+const DPN={int:'Interna',ext:'Externa',sup:'Superficial',oth:'Otro / No identificado'};
 const PATN={A:'A — Disperso / bajo nivel',B:'B — Agrupado 90°/270°',C:'C — Asimétrico (semiciclo)',D:'D — Irregular / múltiple'};
 const DL=['','Baja','Media','Alta','Muy alta'];
 const DC=[28,64,116,176];
@@ -237,64 +251,35 @@ if(typeof pdfjsLib!=='undefined')
   pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
 function syncObs(){document.getElementById('obs-print').textContent=document.getElementById('obs-ta').value;}
+function exportPDF(){syncObs();document.getElementById('pdf-file-row').classList.add('visible');setTimeout(()=>window.print(),80);}
 
-function exportPDF(){
-  syncObs();
-  // Mostrar fila del nombre del archivo también en pantalla durante la impresión
-  const row=document.getElementById('pdf-file-row');
-  row.classList.add('visible');
-  setTimeout(()=>{window.print();},80);
-}
-
-function actionKey(){
-  const th=TH[dp];
-  if(amp<th[0])return'ok';if(amp<th[1])return'watch';if(amp<th[2])return'prog';return'urg';
-}
-
-// ── Score: amp 85% + asimetría 8% + densidad 7% ──────────────────────────
-function riskScore(){
-  const th=TH[dp];
-  // Componente amplitud (0–85)
-  const breaks=[[0,0],[th[0],21.25],[th[1],42.5],[th[2],63.75],[100,85]];
-  let ampScore=0;
-  for(let i=1;i<breaks.length;i++){
-    const[x0,y0]=breaks[i-1],[x1,y1]=breaks[i];
-    if(amp<=x1){ampScore=y0+(amp-x0)/(x1-x0)*(y1-y0);break;}
-  }
-  // Componente asimetría (0–8): crece con |asym|
-  const asymScore=Math.abs(asym)/100*8;
-  // Componente densidad (0–7)
-  const densScore=(dens-1)/3*7;
-  return Math.min(100,Math.round(ampScore+asymScore+densScore));
-}
-
-function updateBarGradient(){
-  const th=TH[dp],t1=th[0],t2=th[1],t3=th[2],tw=7;
-  document.getElementById('rbo').style.background=
-    `linear-gradient(90deg,#16a34a 0%,#16a34a ${Math.max(0,t1-tw)}%,#ca8a04 ${t1+tw}%,#ca8a04 ${Math.max(0,t2-tw)}%,#ea580c ${t2+tw}%,#ea580c ${Math.max(0,t3-tw)}%,#dc2626 ${t3+tw}%,#dc2626 100%)`;
+function applyVisAuto(){
+  if(!pdfFullPage)return;
+  const s=PDF_SCALE;
+  const cL=Math.floor(VIS_PT.x1*s),cT=Math.floor(VIS_PT.y1*s);
+  const cR=Math.ceil(VIS_PT.x2*s), cB=Math.ceil(VIS_PT.y2*s);
+  const cWc=cR-cL,cHc=cB-cT;
+  const tW=Math.round(cWc*2/3),tH=Math.round(cHc*2/3);
+  const tmp=document.createElement('canvas');
+  tmp.width=tW;tmp.height=tH;
+  tmp.getContext('2d').drawImage(pdfFullPage,cL,cT,cWc,cHc,0,0,tW,tH);
+  const img=document.getElementById('vis-img');
+  img.src=tmp.toDataURL('image/png');
+  document.getElementById('vis-empty').style.display='none';
+  document.getElementById('vis-thumb-wrap').style.display='inline-block';
 }
 
 function applyCrop(){
   if(!pdfFullPage)return;
-  const pW=pdfFullPage.width,pH=pdfFullPage.height;
-  const cL=Math.floor(pW*cropL/100),cR=Math.floor(pW*cropR/100);
-  const cT=Math.floor(pH*cropT/100),cB=Math.floor(pH*cropB/100);
+  const s=PDF_SCALE;
+  const cL=Math.floor(PRPD_PT.x1*s),cT=Math.floor(PRPD_PT.y1*s);
+  const cR=Math.ceil(PRPD_PT.x2*s), cB=Math.ceil(PRPD_PT.y2*s);
   const cWc=Math.max(1,cR-cL),cHc=Math.max(1,cB-cT);
   pdfChartCanvas=document.createElement('canvas');
   pdfChartCanvas.width=cWc;pdfChartCanvas.height=cHc;
   pdfChartCanvas.getContext('2d').drawImage(pdfFullPage,cL,cT,cWc,cHc,0,0,cWc,cHc);
   draw();
 }
-function resetCrop(){
-  cropT=DEFAULT_CROP.t;cropB=DEFAULT_CROP.b;cropL=DEFAULT_CROP.l;cropR=DEFAULT_CROP.r;
-  ['sct','scb','scl','scr'].forEach((id,i)=>document.getElementById(id).value=[cropT,cropB,cropL,cropR][i]);
-  ['vct','vcb','vcl','vcr'].forEach((id,i)=>document.getElementById(id).textContent=[cropT,cropB,cropL,cropR][i]+'%');
-  applyCrop();
-}
-function sCropT(v){cropT=v;document.getElementById('vct').textContent=v+'%';applyCrop();}
-function sCropB(v){cropB=v;document.getElementById('vcb').textContent=v+'%';applyCrop();}
-function sCropL(v){cropL=v;document.getElementById('vcl').textContent=v+'%';applyCrop();}
-function sCropR(v){cropR=v;document.getElementById('vcr').textContent=v+'%';applyCrop();}
 
 async function loadPDF(input){
   const file=input.files[0];if(!file)return;
@@ -304,57 +289,77 @@ async function loadPDF(input){
   try{
     const buf=await file.arrayBuffer();
     const pdf=await pdfjsLib.getDocument({data:buf}).promise;
-    const metaIdx=Math.min(3,pdf.numPages);
-    const metaTc=await(await pdf.getPage(metaIdx)).getTextContent();
+    const metaTc=await(await pdf.getPage(Math.min(3,pdf.numPages))).getTextContent();
     const rawText=metaTc.items.map(i=>i.str).join(' ');
     const detectedLabel=parseDP(rawText);
     const pg=await pdf.getPage(Math.min(2,pdf.numPages));
-    const vp=pg.getViewport({scale:2.5});
+    const vp=pg.getViewport({scale:PDF_SCALE});
     pdfFullPage=document.createElement('canvas');
     pdfFullPage.width=vp.width;pdfFullPage.height=vp.height;
     await pg.render({canvasContext:pdfFullPage.getContext('2d'),viewport:vp}).promise;
-    applyCrop();
-    document.getElementById('overlay-ctrl').style.display='block';
-    document.getElementById('crop-ctrl').style.display='block';
-    setUpState('ok',file.name.length>36?file.name.slice(0,34)+'…':file.name,'Gráfico: pág. 2 · Clasificación DP: pág. 3');
+    applyCrop();applyVisAuto();
+    setUpState('ok',file.name.length>36?file.name.slice(0,34)+'…':file.name,'Recortes automáticos aplicados · Clasificación DP: pág. 3');
     document.getElementById('clearbtn').style.display='block';
-    const colMap={int:'danger',ext:'warning',sup:'info'};
+    const colMap={int:'danger',ext:'warning',sup:'info',oth:'secondary'};
     const db=document.getElementById('det-badge');
-    const col=colMap[dp]||'info';
+    const col=colMap[dp]||'secondary';
     db.style.background=`var(--color-background-${col})`;db.style.color=`var(--color-text-${col})`;
     db.textContent=`Tipo DP detectado automáticamente: ${detectedLabel}`;
     document.getElementById('det-row').style.display='block';
     upd();
   }catch(e){setUpState('err','Error al leer PDF',e.message||'Verifique que sea un reporte válido Fluke II915');}
 }
+
 function parseDP(text){
+  const re={int:/Internal\s+(\d+(?:\.\d+)?)\s*%/i,ext:/External\s+(\d+(?:\.\d+)?)\s*%/i,sup:/Tracking\s+(\d+(?:\.\d+)?)\s*%/i,oth:/Other\s+(\d+(?:\.\d+)?)\s*%/i};
+  const pcts={int:0,ext:0,sup:0,oth:0};
+  Object.entries(re).forEach(([k,r])=>{const m=text.match(r);if(m)pcts[k]=parseFloat(m[1]);});
+  ['int','ext','sup','oth'].forEach(k=>{const el=document.getElementById('pct-'+k);if(el)el.textContent=pcts[k]>0?pcts[k].toFixed(0)+'%':'0%';});
   const tagM=text.match(/Discharge\s+Type\s+Tag\s+(\w+)/i);
   if(tagM){const t=tagM[1].toLowerCase();
     if(t==='tracking'){setDP('sup');return'Superficial (Tracking)';}
     if(t==='external'){setDP('ext');return'Externa (External)';}
     if(t==='internal'){setDP('int');return'Interna (Internal)';}
+    if(t==='other'){setDP('oth');return'Otro / No identificado (Other)';}
   }
-  const vals=[{k:'sup',re:/Tracking\s+(\d+(?:\.\d+)?)\s*%/i},{k:'ext',re:/External\s+(\d+(?:\.\d+)?)\s*%/i},{k:'int',re:/Internal\s+(\d+(?:\.\d+)?)\s*%/i}]
-    .map(({k,re})=>{const m=text.match(re);return{k,v:m?parseFloat(m[1]):0};}).sort((a,b)=>b.v-a.v);
-  if(vals[0].v>0){setDP(vals[0].k);const n={int:'Interna (Internal)',ext:'Externa (External)',sup:'Superficial (Tracking)'};return n[vals[0].k]+` — ${vals[0].v.toFixed(0)}%`;}
+  const sorted=Object.entries(pcts).sort((a,b)=>b[1]-a[1]);
+  if(sorted[0][1]>0){setDP(sorted[0][0]);const n={int:'Interna (Internal)',ext:'Externa (External)',sup:'Superficial (Tracking)',oth:'Otro / No identificado (Other)'};return n[sorted[0][0]]+` — ${sorted[0][1].toFixed(0)}%`;}
   return'No determinado';
 }
+
 function clearPDF(){
   pdfChartCanvas=null;pdfFullPage=null;pdfFileName='';
   document.getElementById('pdfInput').value='';
   document.getElementById('pdf-file-name').textContent='';
   document.getElementById('pdf-file-row').classList.remove('visible');
-  ['overlay-ctrl','crop-ctrl','det-row'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='none';});
+  document.getElementById('vis-thumb-wrap').style.display='none';
+  document.getElementById('vis-empty').style.display='flex';
+  document.getElementById('det-row').style.display='none';
   document.getElementById('clearbtn').style.display='none';
-  setUpState('up','Adjuntar reporte PDF','El sistema detectará el tipo de DP (pág. 3) y superpondrá el gráfico PRPD (pág. 2) automáticamente');
+  ['int','ext','sup','oth'].forEach(k=>{const el=document.getElementById('pct-'+k);if(el)el.textContent='';});
+  setUpState('up','Adjuntar reporte PDF','Tipo DP (pág. 3) · Gráfico PRPD + imagen visual (pág. 2) — recorte automático');
   upd();
 }
+
 function setUpState(state,title,sub){
   const paths={up:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>',ok:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>',err:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>',proc:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>'};
   const cols={up:'info',ok:'success',err:'danger',proc:'warning'};const col=cols[state]||'info';
   document.getElementById('upicon').style.background=`var(--color-background-${col})`;
   const svg=document.getElementById('upsvg');svg.innerHTML=paths[state]||paths.up;svg.style.color=`var(--color-text-${col})`;
   document.getElementById('upttl').textContent=title;document.getElementById('upsub').textContent=sub;
+}
+
+function actionKey(){if(dp==='oth')return'oth';const th=TH[dp];if(amp<th[0])return'ok';if(amp<th[1])return'watch';if(amp<th[2])return'prog';return'urg';}
+function riskScore(){
+  const th=TH[dp]||TH.sup;
+  const breaks=[[0,0],[th[0],21.25],[th[1],42.5],[th[2],63.75],[100,85]];
+  let ampScore=0;
+  for(let i=1;i<breaks.length;i++){const[x0,y0]=breaks[i-1],[x1,y1]=breaks[i];if(amp<=x1){ampScore=y0+(amp-x0)/(x1-x0)*(y1-y0);break;}}
+  return Math.min(100,Math.round(ampScore+Math.abs(asym)/100*8+(dens-1)/3*7));
+}
+function updateBarGradient(){
+  const th=TH[dp]||TH.sup,t1=th[0],t2=th[1],t3=th[2],tw=7;
+  document.getElementById('rbo').style.background=`linear-gradient(90deg,#16a34a 0%,#16a34a ${Math.max(0,t1-tw)}%,#ca8a04 ${t1+tw}%,#ca8a04 ${Math.max(0,t2-tw)}%,#ea580c ${t2+tw}%,#ea580c ${Math.max(0,t3-tw)}%,#dc2626 ${t3+tw}%,#dc2626 100%)`;
 }
 function rng(seed){let s=seed>>>0;return()=>{s=Math.imul(1664525,s)+1013904223>>>0;return s/4294967296;};}
 function mkPulses(){
@@ -365,7 +370,7 @@ function mkPulses(){
       case'A':ph=r()*360;a=amp*(0.12+r()*0.62);break;
       case'B':{const h=r()>.5,c=h?90:270;ph=c+(r()-.5)*40;const f=h?(1-as*0.55):(1+as*0.55);a=Math.min(100,amp*(0.42+r()*0.58)*Math.max(0.05,f));break;}
       case'C':{const pL=0.5-as*0.46;const left=r()<Math.max(0.04,Math.min(0.96,pL));ph=left?(50+r()*76):(230+r()*76);const f=left?(1-as*0.60):(1+as*0.60);a=Math.min(100,amp*(0.36+r()*0.64)*Math.max(0.05,f));break;}
-      case'D':{const cs=[38,128,218,308],c=cs[0|r()*4];ph=c+(r()-.5)*54;a=Math.min(100,amp*(0.50+r()*0.50));break;}
+      case'D':{const cs=[38,128,218,308],c=cs[0|r()*4];ph=c+(r()-.5)*54;a=Math.min(100,amp*(0.50+r()*.50));break;}
     }
     if(ph<0)ph+=360;if(ph>360)ph-=360;res.push({ph,a:Math.max(0,a)});
   }
@@ -380,7 +385,8 @@ function draw(){
   const snc=d?'rgba(140,140,220,0.14)':'rgba(80,80,180,0.10)';
   const P={t:16,r:10,b:26,l:36};
   const cW=W-P.l-P.r,cH=196-P.t-P.b;
-  const xp=a=>P.l+(a/360)*cW;const yp=v=>P.t+cH*(1-v/100);const th=TH[dp];
+  const xp=a=>P.l+(a/360)*cW;const yp=v=>P.t+cH*(1-v/100);
+  const th=TH[dp]||TH.sup;
   cx.clearRect(0,0,W,196);
   [[0,th[0],'rgba(22,163,74,0.10)'],[th[0],th[1],'rgba(202,138,4,0.115)'],[th[1],th[2],'rgba(234,88,12,0.12)'],[th[2],100,'rgba(220,38,38,0.13)']].forEach(([f,t,col])=>{cx.fillStyle=col;cx.fillRect(P.l,yp(t),cW,yp(f)-yp(t));});
   cx.beginPath();cx.strokeStyle=snc;cx.lineWidth=1.5;
@@ -406,8 +412,8 @@ function draw(){
   cx.fillStyle=txc;cx.font='9px sans-serif';cx.textAlign='left';cx.fillText('Amplitud (%)',P.l+2,P.t+8);
 }
 
-const NORMS={ok:{int:'<strong>Referencia normativa:</strong> IEC 60270:2000 §6 — Los niveles de descarga parcial interna dentro del umbral aceptable no requieren intervención inmediata. Se recomienda monitoreo continuo conforme a IEEE Std 400-2012 e IEC 62478:2016.',ext:'<strong>Referencia normativa:</strong> IEC 60815-1:2008 — Niveles de descarga externa (efecto corona) dentro de rangos aceptables. Monitoreo periódico recomendado por CIGRÉ TB 654.',sup:'<strong>Referencia normativa:</strong> IEC 60270:2000 §5 — Descarga superficial (tracking) en niveles aceptables. Verificación periódica recomendada conforme a IEC 62478:2016 e IEEE Std 1434-2014.'},watch:{int:'<strong>Referencia normativa:</strong> IEC 60270:2000 §8 y IEEE Std 400.3-2006 — DP interna en crecimiento requiere vigilancia intensiva. CIGRÉ TB 841 (2021) recomienda segunda medición confirmatoria en ≤ 30 días.',ext:'<strong>Referencia normativa:</strong> IEC 60815-1/2/3:2008 — Corona creciente por contaminación o daño incipiente. CIGRÉ TB 361 recomienda intensificar la frecuencia de inspección.',sup:'<strong>Referencia normativa:</strong> IEC 60270:2000 e IEC 62478:2016 — Descarga superficial en nivel de vigilancia. IEEE Std 48-2009 indica seguimiento mensual ante incremento en interfaz aislante-semiconductor.'},prog:{int:'<strong>Referencia normativa:</strong> IEC 60270:2000 §9, IEEE Std 400-2012 §9 y CIGRÉ TB 841 (2021) — DP interna significativa: deterioro progresivo del aislamiento sólido. Complementar con termografía y planificar sustitución.',ext:'<strong>Referencia normativa:</strong> IEC 60815-3:2008 y CIGRÉ TB 654 — Descarga externa significativa. Limpieza obligatoria conforme a IEC 60305. Compuesto hidrofóbico según CIGRÉ TB 481.',sup:'<strong>Referencia normativa:</strong> IEEE Std 48-2009 §8 e IEC 60270:2000 — DP superficial significativa. IEEE Std 400.2-2013 recomienda verificación de integridad de interfaz y re-instalación de terminaciones.'},urg:{int:'<strong>Referencia normativa:</strong> IEC 60270:2000 §10, IEEE Std 400-2012 §10 y CIGRÉ TB 841 (2021) — DP interna crítica: falla inminente. Reemplazo obligatorio antes de reposición. Validación PRPD conforme IEC 60840/62067.',ext:'<strong>Referencia normativa:</strong> IEC 60071-1:2019 y CIGRÉ TB 654 — Descarga externa crítica: riesgo de flameo. IEEE Std C2-2017 exige descargo inmediato. Reemplazo según IEC 60305 e IEC 60433.',sup:'<strong>Referencia normativa:</strong> IEEE Std 48-2009 §9 e IEC 62067:2011 — DP superficial crítica: falla inminente en terminación. Reemplazo completo obligatorio y validación PRPD conforme IEC 60270:2000.'}};
-const ACTS={ok:{c:'#16a34a',bg:'rgba(22,163,74,0.07)',t:'Sin intervención requerida — continuar monitoreo en ciclo normal',o:{int:['Amplitud de DP interna dentro del rango aceptable','Programar próxima medición según ciclo estándar del tramo','Mantener registro histórico para seguimiento de tendencia'],ext:['DP externa en niveles residuales — posible corona incipiente sin riesgo inmediato','Inspección visual en próxima ronda de terreno programada','Sin acción correctiva requerida en este ciclo'],sup:['DP superficial en nivel aceptable — interfaz en condiciones normales','Mantener ciclo de monitoreo estándar para el punto','Sin acción requerida en este ciclo']}},watch:{c:'#ca8a04',bg:'rgba(202,138,4,0.07)',t:'Vigilancia intensiva — aumentar frecuencia de inspección a ciclo mensual',o:{int:['Amplitud supera umbral de atención — documentar evolución','Segunda medición de confirmación en máximo 30 días','Si patrón PRPD escala una categoría → intervención programada','Revisar historial del punto para detectar tendencia creciente'],ext:['DP externa creciente — verificar contaminación o daño en aisladores','Inspección visual detallada en próxima visita','Evaluar limpieza en próxima ventana de mantenimiento','Registrar condiciones ambientales en cada medición'],sup:['DP superficial en crecimiento — revisar terminaciones e interfaces','Verificar humedad en juntas y estado de sellado','Medir resistencia de aislamiento si la tendencia es creciente']}},prog:{c:'#ea580c',bg:'rgba(234,88,12,0.07)',t:'Intervención programada — incluir en próxima ventana de mantenimiento',o:{int:['DP interna significativa — deterioro progresivo del aislamiento sólido','Complementar con termografía infrarroja en el punto afectado','Planificar sustitución del elemento en próxima ventana disponible','Medición PRPD de confirmación 15 días antes de la intervención'],ext:['DP externa significativa — posible contaminación severa o daño en aislador','Programar limpieza caliente o en frío según protocolo','Inspeccionar distancias de fuga en todo el segmento','Evaluar compuesto hidrofóbico post-limpieza'],sup:['DP superficial significativa — posible instalación deficiente en terminal','Revisar y re-instalar terminaciones según procedimiento del fabricante','Verificar torques y sellado de todas las terminaciones del tramo']}},urg:{c:'#dc2626',bg:'rgba(220,38,38,0.08)',t:'INTERVENCIÓN URGENTE — notificar a operaciones en ≤ 24 horas',o:{int:['DP interna crítica — riesgo de falla inminente del aislamiento','Notificar centro de control y coordinar descargo con máxima prioridad','Reemplazar componente — no reconectar sin PRPD de validación','Análisis post-mortem para determinar origen y prevenir recurrencia'],ext:['DP externa crítica — alto riesgo de flashover en el segmento','Notificar operaciones para descargo prioritario del tramo','Reemplazar aisladores dañados; verificar tramos adyacentes','Medición PRPD de validación obligatoria antes del retorno'],sup:['DP superficial crítica — falla grave en terminal o interfaz','Reemplazar la(s) terminación(es) — no se recomienda reparación temporal','Verificar toda la interfaz del segmento','Validación PRPD obligatoria antes del retorno al servicio']}}};
+const NORMS={ok:{int:'<strong>Referencia normativa:</strong> IEC 60270:2000 §6 — DP interna dentro del umbral aceptable. Monitoreo continuo conforme a IEEE Std 400-2012 e IEC 62478:2016.',ext:'<strong>Referencia normativa:</strong> IEC 60815-1:2008 — DP externa dentro de rangos aceptables. Monitoreo periódico recomendado por CIGRÉ TB 654.',sup:'<strong>Referencia normativa:</strong> IEC 60270:2000 §5 — Descarga superficial en niveles aceptables. Verificación periódica conforme a IEC 62478:2016 e IEEE Std 1434-2014.',oth:'<strong>Referencia normativa:</strong> IEC 60270:2000 §5 — Descarga de tipo no identificado. Continuar monitoreo estándar y solicitar análisis complementario para clasificación definitiva.'},watch:{int:'<strong>Referencia normativa:</strong> IEC 60270:2000 §8 y IEEE Std 400.3-2006 — DP interna en crecimiento. CIGRÉ TB 841 (2021): segunda medición confirmatoria en ≤ 30 días.',ext:'<strong>Referencia normativa:</strong> IEC 60815-1/2/3:2008 — Corona creciente. CIGRÉ TB 361 recomienda intensificar frecuencia de inspección.',sup:'<strong>Referencia normativa:</strong> IEC 60270:2000 e IEC 62478:2016 — DP superficial en vigilancia. IEEE Std 48-2009: seguimiento mensual.',oth:'<strong>Referencia normativa:</strong> IEC 60270:2000 §5 — Descarga no identificada. Mantener monitoreo estándar y solicitar análisis especializado.'},prog:{int:'<strong>Referencia normativa:</strong> IEC 60270:2000 §9, IEEE Std 400-2012 §9 y CIGRÉ TB 841 (2021) — DP interna significativa. Complementar con termografía y planificar sustitución.',ext:'<strong>Referencia normativa:</strong> IEC 60815-3:2008 y CIGRÉ TB 654 — DP externa significativa. Limpieza conforme a IEC 60305 y CIGRÉ TB 481.',sup:'<strong>Referencia normativa:</strong> IEEE Std 48-2009 §8 e IEC 60270:2000 — DP superficial significativa. IEEE Std 400.2-2013: verificar integridad de interfaz.',oth:'<strong>Referencia normativa:</strong> IEC 60270:2000 §5 — Descarga no identificada. Mantener monitoreo estándar y solicitar análisis especializado.'},urg:{int:'<strong>Referencia normativa:</strong> IEC 60270:2000 §10, IEEE Std 400-2012 §10 y CIGRÉ TB 841 (2021) — DP interna crítica. Reemplazo obligatorio y validación PRPD conforme IEC 60840/62067.',ext:'<strong>Referencia normativa:</strong> IEC 60071-1:2019 y CIGRÉ TB 654 — DP externa crítica. IEEE Std C2-2017: descargo inmediato. Reemplazo según IEC 60305 e IEC 60433.',sup:'<strong>Referencia normativa:</strong> IEEE Std 48-2009 §9 e IEC 62067:2011 — DP superficial crítica. Reemplazo completo y validación PRPD conforme IEC 60270:2000.',oth:'<strong>Referencia normativa:</strong> IEC 60270:2000 §5 — Descarga no identificada. Mantener monitoreo estándar y solicitar análisis especializado.'},oth:{int:'<strong>Referencia normativa:</strong> IEC 60270:2000 §5 — Descarga no identificada. Mantener monitoreo estándar y solicitar análisis especializado para identificar la fuente.',ext:'<strong>Referencia normativa:</strong> IEC 60270:2000 §5 — Descarga no identificada. Mantener monitoreo estándar y solicitar análisis especializado para identificar la fuente.',sup:'<strong>Referencia normativa:</strong> IEC 60270:2000 §5 — Descarga no identificada. Mantener monitoreo estándar y solicitar análisis especializado para identificar la fuente.',oth:'<strong>Referencia normativa:</strong> IEC 60270:2000 §5 — Descarga no identificada. Mantener monitoreo estándar y solicitar análisis especializado para identificar la fuente.'}};
+const ACTS={ok:{c:'#16a34a',bg:'rgba(22,163,74,0.07)',t:'Sin intervención requerida — continuar monitoreo en ciclo normal',o:{int:['Amplitud de DP interna dentro del rango aceptable','Programar próxima medición según ciclo estándar','Mantener registro histórico para seguimiento de tendencia'],ext:['DP externa en niveles residuales sin riesgo inmediato','Inspección visual en próxima ronda de terreno','Sin acción correctiva requerida en este ciclo'],sup:['DP superficial en nivel aceptable — interfaz en condiciones normales','Mantener ciclo de monitoreo estándar','Sin acción requerida en este ciclo'],oth:['Mantener ciclo de monitoreo estándar para el punto','Solicitar análisis complementario para identificar el tipo de descarga','Documentar medición para seguimiento de tendencia']}},watch:{c:'#ca8a04',bg:'rgba(202,138,4,0.07)',t:'Vigilancia intensiva — aumentar frecuencia de inspección a ciclo mensual',o:{int:['Amplitud supera umbral de atención — documentar evolución','Segunda medición de confirmación en máximo 30 días','Si patrón PRPD escala → intervención programada'],ext:['DP externa creciente — verificar contaminación o daño en aisladores','Inspección visual detallada en próxima visita','Evaluar limpieza en próxima ventana'],sup:['DP superficial en crecimiento — revisar terminaciones e interfaces','Verificar humedad en juntas y estado de sellado','Medir resistencia de aislamiento si la tendencia es creciente'],oth:['Mantener ciclo de monitoreo estándar para el punto','Solicitar análisis complementario para identificar el tipo de descarga','Documentar medición para seguimiento de tendencia']}},prog:{c:'#ea580c',bg:'rgba(234,88,12,0.07)',t:'Intervención programada — incluir en próxima ventana de mantenimiento',o:{int:['DP interna significativa — deterioro progresivo del aislamiento','Complementar con termografía infrarroja en el punto afectado','Planificar sustitución en próxima ventana disponible'],ext:['DP externa significativa — posible contaminación severa o daño','Programar limpieza caliente o en frío según protocolo','Evaluar compuesto hidrofóbico post-limpieza'],sup:['DP superficial significativa — posible instalación deficiente','Revisar y re-instalar terminaciones según procedimiento del fabricante','Verificar torques y sellado de todas las terminaciones'],oth:['Mantener ciclo de monitoreo estándar para el punto','Solicitar análisis complementario para identificar el tipo de descarga','Documentar medición para seguimiento de tendencia']}},urg:{c:'#dc2626',bg:'rgba(220,38,38,0.08)',t:'INTERVENCIÓN URGENTE — notificar a operaciones en ≤ 24 horas',o:{int:['DP interna crítica — riesgo de falla inminente','Notificar centro de control y coordinar descargo con máxima prioridad','Reemplazar componente — no reconectar sin PRPD de validación'],ext:['DP externa crítica — alto riesgo de flashover','Notificar operaciones para descargo prioritario','Reemplazar aisladores dañados; verificar tramos adyacentes'],sup:['DP superficial crítica — falla grave en terminal o interfaz','Reemplazar la(s) terminación(es) — no se recomienda reparación temporal','Validación PRPD obligatoria antes del retorno al servicio'],oth:['Mantener ciclo de monitoreo estándar para el punto','Solicitar análisis complementario para identificar el tipo de descarga','Documentar medición para seguimiento de tendencia']}},oth:{c:'#6b7280',bg:'rgba(107,114,128,0.07)',t:'Descarga no identificada — mantener ciclo de monitoreo estándar',o:{int:['Mantener ciclo de monitoreo estándar para el punto','Solicitar análisis complementario para identificar el tipo de descarga','Documentar medición para seguimiento de tendencia'],ext:['Mantener ciclo de monitoreo estándar para el punto','Solicitar análisis complementario para identificar el tipo de descarga','Documentar medición para seguimiento de tendencia'],sup:['Mantener ciclo de monitoreo estándar para el punto','Solicitar análisis complementario para identificar el tipo de descarga','Documentar medición para seguimiento de tendencia'],oth:['Mantener ciclo de monitoreo estándar para el punto','Solicitar análisis complementario para identificar el tipo de descarga','Documentar medición para seguimiento de tendencia']}}};
 
 function upd(){
   pat=document.getElementById('pat').value;
@@ -415,32 +421,41 @@ function upd(){
   updateBarGradient();
   document.getElementById('rt').style.left=s+'%';document.getElementById('rs').textContent=s;
   document.getElementById('dc').textContent=PATN[pat];document.getElementById('dd').textContent=DPN[dp];
-  const LVL={ok:'Monitoreo rutinario',watch:'Vigilancia intensiva',prog:'Intervención programada',urg:'Intervención urgente'};
+  const LVL={ok:'Monitoreo rutinario',watch:'Vigilancia intensiva',prog:'Intervención programada',urg:'Intervención urgente',oth:'Descarga no identificada'};
   const act=ACTS[k];
   document.getElementById('dl').textContent=LVL[k];document.getElementById('dl').style.color=act.c;
   document.getElementById('rt').style.borderColor=act.c;
   const ab=document.getElementById('abox');ab.style.background=act.bg;ab.style.borderLeftColor=act.c;
   document.getElementById('at').style.color=act.c;document.getElementById('at').textContent=act.t;
-  document.getElementById('ao').innerHTML=act.o[dp].map(x=>`<li>${x}</li>`).join('');
-  document.getElementById('norm-box').style.display='block';document.getElementById('norm-text').innerHTML=NORMS[k][dp];
-  const th=TH[dp];
+  const dpKey=(dp in act.o)?dp:'oth';
+  document.getElementById('ao').innerHTML=act.o[dpKey].map(x=>`<li>${x}</li>`).join('');
+  document.getElementById('norm-box').style.display='block';
+  document.getElementById('norm-text').innerHTML=NORMS[k][dp]||NORMS[k].oth;
+  const th=TH[dp]||TH.sup;
   document.getElementById('tn').textContent=`Umbrales DP ${DPN[dp]}: aceptable < ${th[0]}% · vigilancia ${th[0]}–${th[1]}% · programado ${th[1]}–${th[2]}% · urgente > ${th[2]}%`;
   draw();
 }
+
 function asymLabel(v){if(v===0)return'Nivelado';const p=Math.abs(v)+'%';return v<0?`${p} semiciclo (+) 90°`:`${p} semiciclo (−) 270°`;}
 function setDP(t){
   dp=t;
   document.getElementById('bi').className='dpb'+(t==='int'?' ai':'');
   document.getElementById('be').className='dpb'+(t==='ext'?' ae':'');
   document.getElementById('bs').className='dpb'+(t==='sup'?' as':'');
+  document.getElementById('bo').className='dpb'+(t==='oth'?' ao':'');
   const db=document.getElementById('det-badge');
-  if(db.textContent){const cm={int:'danger',ext:'warning',sup:'info'};const c=cm[t]||'info';db.style.background=`var(--color-background-${c})`;db.style.color=`var(--color-text-${c})`;}
+  if(db.textContent){const cm={int:'danger',ext:'warning',sup:'info',oth:'secondary'};const c=cm[t]||'secondary';db.style.background=`var(--color-background-${c})`;db.style.color=`var(--color-text-${c})`;}
   upd();
 }
 function sA(v){amp=v;document.getElementById('va').textContent=Math.round(v)+'%';upd();}
 function sB(v){asym=v;document.getElementById('vb').textContent=asymLabel(v);upd();}
 function sC(v){dens=+v;document.getElementById('vc').textContent=DL[dens];upd();}
-function sOv(v){overlayOpacity=v;document.getElementById('vov').textContent=v+'%';draw();}
+function sOv(v){
+  overlayOpacity=v;
+  document.getElementById('vov').textContent=v+'%';
+  document.getElementById('ov-print').textContent='Overlay PRPD: '+v+'%';
+  draw();
+}
 window.addEventListener('resize',()=>{if(cv.offsetWidth)draw();},{passive:true});
 setTimeout(()=>setDP('int'),80);
 </script>
