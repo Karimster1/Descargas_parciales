@@ -3,7 +3,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:var(--font-sans);background:#111827!important;color:#e5e7eb!important;}
-.root{width:100%;min-width:100%;max-width:100%;background:#111827!important;}
+.root{width:100%;max-width:100%;background:#111827!important;}
 .pnl,.vis-pnl,.upwrap{background:#1f2937!important;border:1px solid #374151!important;box-shadow:0 4px 12px rgba(0,0,0,.4)!important;}
 .norm-box,.obs-ta,.vis-empty,.vis-input{background:#0f172a!important;border-color:#374151!important;}
 .ttl{font-size:15px;font-weight:700;color:#fbbf24!important;text-transform:uppercase;letter-spacing:.8px;margin-bottom:2px;}
@@ -14,11 +14,11 @@ body{font-family:var(--font-sans);background:#111827!important;color:#e5e7eb!imp
 .cn,.il,.tn,.obs-label,.pdf-file-label,.asym-hints span,.vis-input-lbl{color:#9ca3af!important;}
 .cv,.iv,.rs,.at,.pdf-file-name{color:#f3f4f6!important;}
 select,input,textarea{background:#111827!important;color:#e5e7eb!important;}
-.upbtn{flex-shrink:0;padding:5px 12px;font-size:11px;font-weight:700;border:none!important;border-radius:6px;background:linear-gradient(180deg,#facc15,#eab308)!important;color:#111!important;cursor:pointer;transition:opacity .15s;}
+.upbtn{flex-shrink:0;padding:5px 12px;font-size:11px;font-weight:700;border:none!important;border-radius:6px;background:linear-gradient(180deg,#facc15,#eab308)!important;color:#111!important;cursor:pointer;}
 .upbtn:hover{opacity:.85;}
 .upbtn.danger{background:linear-gradient(180deg,#ef4444,#dc2626)!important;color:#fff!important;}
 .btn-highlight{display:inline-flex;align-items:center;border:2px solid #facc15!important;border-radius:8px;padding:3px;background:rgba(250,204,21,.1);box-shadow:0 0 12px rgba(250,204,21,.2);}
-.export-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;font-size:13px;font-weight:700;border:none;border-radius:6px;background:linear-gradient(180deg,#facc15,#eab308)!important;color:#111!important;cursor:pointer;transition:opacity .15s;}
+.export-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;font-size:13px;font-weight:700;border:none;border-radius:6px;background:linear-gradient(180deg,#facc15,#eab308)!important;color:#111!important;cursor:pointer;}
 .export-btn:hover{opacity:.85;}
 .export-row{display:flex;justify-content:flex-end;margin-top:14px;}
 .g2{display:grid;grid-template-columns:1fr 226px;gap:12px;margin-bottom:12px;}
@@ -29,19 +29,17 @@ select,input,textarea{background:#111827!important;color:#e5e7eb!important;}
 .dpb{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:6px 4px;font-size:11px;font-weight:500;border:1px solid #374151;border-radius:6px;cursor:pointer;color:#9ca3af;transition:all .15s;text-align:center;background:#111827;}
 .dpb:hover{background:#1f2937;}
 .dp-pct{font-size:9px;font-weight:400;opacity:.75;min-height:11px;}
-.dpb.ai{background:#dc2626!important;color:#fff;border-color:#dc2626;box-shadow:0 0 0 2px #dc262640;}
-.dpb.ae{background:#d97706!important;color:#fff;border-color:#d97706;box-shadow:0 0 0 2px #d9770640;}
-.dpb.as{background:#2563eb!important;color:#fff;border-color:#2563eb;box-shadow:0 0 0 2px #2563eb40;}
-.dpb.ao{background:#6b7280!important;color:#fff;border-color:#6b7280;box-shadow:0 0 0 2px #6b728040;}
+.dpb.ai{background:#dc2626!important;color:#fff;border-color:#dc2626;}
+.dpb.ae{background:#d97706!important;color:#fff;border-color:#d97706;}
+.dpb.as{background:#2563eb!important;color:#fff;border-color:#2563eb;}
+.dpb.ao{background:#6b7280!important;color:#fff;border-color:#6b7280;}
 select{width:100%;padding:6px 8px;font-size:12px;border:1px solid #374151;border-radius:6px;}
 input[type=range]{width:100%;}
 .asym-hints{display:flex;justify-content:space-between;font-size:9px;margin-top:2px;padding:0 1px;}
-/* ── Panel fases D ── */
-.pat-d-ctrl{margin-top:7px;padding:9px 10px;background:rgba(0,0,0,.22);border:1px solid #374151;border-radius:6px;animation:fadeMsg .2s ease;}
+.pat-d-ctrl{margin-top:7px;padding:9px 10px;background:rgba(0,0,0,.22);border:1px solid #374151;border-radius:6px;}
 .pat-d-ctrl-hdr{font-size:9px;color:#fbbf24;text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin-bottom:7px;}
 .pat-d-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .pat-d-lbl{font-size:10px;color:#9ca3af;margin-bottom:3px;font-weight:500;}
-@keyframes fadeMsg{from{opacity:0;transform:translateY(-2px);}to{opacity:1;transform:translateY(0);}}
 .leg{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;}
 .li{display:flex;align-items:center;gap:4px;font-size:10px;color:#9ca3af;}
 .ld{width:10px;height:10px;border-radius:2px;}
@@ -61,6 +59,20 @@ input[type=range]{width:100%;}
 .ri-btn.active{background:rgba(250,204,21,.18);border-color:#fbbf24;color:#fbbf24;font-weight:700;}
 .ri-print{display:none;font-size:10px;font-weight:700;color:#b45309;}
 .ri-msg{font-size:10px;color:#9ca3af;background:rgba(250,204,21,.05);border:1px solid #2d3748;border-left:2px solid rgba(250,204,21,.45);border-radius:4px;padding:6px 10px;line-height:1.55;}
+.tog-btn{padding:3px 11px;font-size:10px;font-weight:600;border:1px solid #374151;border-radius:5px;background:#111827;color:#9ca3af;cursor:pointer;transition:all .15s;white-space:nowrap;}
+.tog-btn:hover{border-color:#fbbf24;color:#fbbf24;}
+.tog-btn.active{background:rgba(250,204,21,.18);border-color:#fbbf24;color:#fbbf24;}
+.dig-ctrl-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:8px 12px;background:rgba(255,255,255,.03);border:1px solid #374151;border-radius:6px;margin-bottom:8px;}
+.dig-ctrl-group{display:flex;align-items:center;gap:7px;flex-shrink:0;}
+.dig-ctrl-lbl{font-size:9px;color:#6b7280;text-transform:uppercase;letter-spacing:.4px;font-weight:600;white-space:nowrap;}
+.dig-ctrl-val{font-size:10px;font-weight:700;color:#f3f4f6;min-width:34px;}
+.dig-stat-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;padding:8px 12px;background:rgba(255,255,255,.03);border:1px solid #374151;border-radius:6px;}
+.dig-stat{display:flex;flex-direction:column;gap:2px;}
+.dig-stat-lbl{font-size:9px;color:#6b7280;text-transform:uppercase;letter-spacing:.4px;font-weight:600;}
+.dig-stat-val{font-size:13px;font-weight:700;color:#f3f4f6;}
+.dig-progress{display:flex;align-items:center;gap:10px;padding:14px;color:#9ca3af;font-size:11px;}
+.dig-spinner{width:16px;height:16px;border:2px solid #374151;border-top-color:#fbbf24;border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0;}
+@keyframes spin{to{transform:rotate(360deg);}}
 .conf-pnl{border-radius:8px;padding:14px;margin-bottom:12px;}
 .conf-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:0;}
 .conf-header .slbl{margin-bottom:0;}
@@ -73,19 +85,19 @@ input[type=range]{width:100%;}
 .toggle-track:before{position:absolute;content:"";height:15px;width:15px;left:2px;bottom:2px;background:#6b7280;border-radius:50%;transition:.25s;}
 .toggle-sw input:checked+.toggle-track{background:rgba(250,204,21,.2);border-color:#fbbf24;}
 .toggle-sw input:checked+.toggle-track:before{transform:translateX(17px);background:#fbbf24;}
+#ref-toggle:checked+.toggle-track{background:rgba(191,0,255,.25)!important;border-color:#BF00FF!important;}
+#ref-toggle:checked+.toggle-track:before{transform:translateX(17px);background:#BF00FF!important;}
 .conf-content{margin-top:8px;}
 .conf-block{padding-bottom:14px;border-bottom:1px solid #374151;margin-bottom:14px;}
 .conf-block:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0;}
 .conf-block-hdr{display:flex;align-items:center;gap:8px;}
 .conf-block-title{font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;flex:1;}
-.import-btn{padding:4px 12px;font-size:11px;font-weight:600;border:1px solid #4b5563;border-radius:5px;background:#1f2937;color:#9ca3af;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:5px;}
+.import-btn{padding:4px 12px;font-size:11px;font-weight:600;border:1px solid #4b5563;border-radius:5px;background:#1f2937;color:#9ca3af;cursor:pointer;display:inline-flex;align-items:center;gap:5px;}
 .import-btn:hover{border-color:#fbbf24;color:#fbbf24;}
 .import-clear{padding:4px 8px;font-size:11px;font-weight:700;border:1px solid #374151;border-radius:5px;background:transparent;color:#ef4444;cursor:pointer;}
-.import-clear:hover{background:rgba(239,68,68,.1);}
 .conf-img-obs{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:start;margin-top:8px;}
 .conf-img-obs img{display:block;width:100%;height:auto;max-height:200px;object-fit:contain;border-radius:5px;border:1px solid #374151;}
 .conf-obs{width:100%;min-height:130px;resize:vertical;padding:8px 10px;font-size:11px;font-family:var(--font-sans);background:#0f172a!important;border:1px solid #374151;border-radius:5px;color:#e5e7eb;outline:none;line-height:1.5;}
-.conf-obs:focus{border-color:#fbbf24;}
 .conf-obs::placeholder{color:#6b7280;font-size:10px;}
 .conf-obs-print{display:none;font-size:11px;white-space:pre-wrap;line-height:1.5;}
 .crit-section{margin-top:10px;padding-top:10px;border-top:1px solid #374151;}
@@ -97,14 +109,13 @@ input[type=range]{width:100%;}
 .crit-print{display:none;font-size:10px;line-height:1.55;}
 .icd-pnl{border-radius:8px;padding:14px;margin-bottom:12px;}
 .icd-score-row{display:flex;align-items:baseline;gap:6px;margin-bottom:12px;}
-.icd-num{font-size:44px;font-weight:700;color:#f3f4f6;line-height:1;transition:color .3s;}
+.icd-num{font-size:44px;font-weight:700;color:#f3f4f6;line-height:1;}
 .icd-denom{font-size:14px;color:#6b7280;}
-.icd-cls{font-size:15px;font-weight:700;transition:color .3s;}
+.icd-cls{font-size:15px;font-weight:700;}
 .icd-body-grid{display:grid;grid-template-columns:2fr 1fr;gap:16px;align-items:stretch;}
 .icd-left-body{display:flex;flex-direction:column;justify-content:space-between;}
-.icd-bar-wrap{height:12px;background:#111827;border:1px solid #374151;border-radius:6px;overflow:hidden;margin-bottom:6px;position:relative;}
-.icd-bar-fill{height:100%;width:30%;background:#dc2626;border-radius:6px;transition:width .6s ease,background .4s;position:relative;}
-.icd-bar-fill::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,rgba(255,255,255,.15));border-radius:6px;}
+.icd-bar-wrap{height:12px;background:#111827;border:1px solid #374151;border-radius:6px;overflow:hidden;margin-bottom:6px;}
+.icd-bar-fill{height:100%;width:30%;background:#dc2626;border-radius:6px;transition:width .6s ease,background .4s;}
 .icd-scale{display:flex;justify-content:space-between;font-size:9px;font-weight:600;padding:0 1px;}
 .icd-scale .s-baja{color:#dc2626;}.icd-scale .s-mod{color:#ca8a04;}.icd-scale .s-alta{color:#2563eb;}.icd-scale .s-muy{color:#16a34a;}
 .icd-sum-box{background:rgba(255,255,255,.03);border:1px solid #374151;border-radius:6px;padding:9px 12px;}
@@ -165,7 +176,8 @@ canvas{display:block;}
 @media print{
   html,body,*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
   .conf-pnl[data-inactive="true"]{display:none!important;}
-  .upwrap,.export-row,.obs-ta,.btn-highlight,.ov-ctrl,.import-btn,.import-clear,.toggle-sw,.conf-toggle-wrap,.crit-btns,.pat-d-ctrl{display:none!important;}
+  #dig-pnl[data-inactive="true"]{display:none!important;}
+  .upwrap,.export-row,.obs-ta,.btn-highlight,.ov-ctrl,.import-btn,.import-clear,.toggle-sw,.conf-toggle-wrap,.crit-btns,.pat-d-ctrl,.dig-ctrl-row,.dig-progress{display:none!important;}
   .obs-print,.conf-obs-print{display:block!important;}
   .crit-print{display:block!important;color:#000!important;}
   .vis-input{display:none!important;}
@@ -185,18 +197,16 @@ canvas{display:block;}
   input[type=range]{display:none!important;}
   .conf-content{display:block!important;}
   .icd-bar-wrap{background:#f3f4f6!important;border-color:#d1d5db!important;}
-  .icd-bar-fill::after{display:none!important;}
   .icd-sum-box,.icd-crit-box{background:#f9fafb!important;border-color:#d1d5db!important;}
   .ri-msg,.crit-desc{display:none!important;}
-  .crit-section{border-top-color:#d1d5db!important;}
-  .sec-desc,.conf-block-desc{color:#555!important;}
-  .icd-denom,.obs-label,.pdf-file-label,.pdf-file-name,.il,.rl,.pulse-lbl,.vis-input-lbl,.li,.fnote,.cn,.norm-box p,.norm-box strong,.obs-print,.vis-print-block,.ri-lbl,.slbl,.conf-block-title,.conf-obs-print,.tn,.asym-hints span,.crit-lbl,.icd-sum-header,.icd-crit-lbl{color:#000!important;}
+  .dig-stat-row{background:#f9fafb!important;border-color:#d1d5db!important;}
+  .dig-stat-lbl,.icd-denom,.obs-label,.pdf-file-label,.pdf-file-name,.il,.rl,.pulse-lbl,.vis-input-lbl,.li,.fnote,.cn,.norm-box p,.norm-box strong,.obs-print,.vis-print-block,.ri-lbl,.slbl,.conf-block-title,.conf-obs-print,.tn,.asym-hints span,.crit-lbl,.icd-sum-header,.icd-crit-lbl{color:#000!important;}
+  .dig-stat-val{color:#000!important;}
   .ttl{color:#b45309!important;}
   .pulse-val,.ri-print{color:#b45309!important;}
   .dpb{background:#f3f4f6!important;border-color:#d1d5db!important;color:#374151!important;}
   .dpb.ai{background:#dc2626!important;color:#fff!important;}.dpb.ae{background:#d97706!important;color:#fff!important;}.dpb.as{background:#2563eb!important;color:#fff!important;}.dpb.ao{background:#6b7280!important;color:#fff!important;}
-  .ri-row{border-top-color:#d1d5db!important;}
-  .pulse-row,.ov-ctrl{border-top-color:#d1d5db!important;}
+  .ri-row,.pulse-row{border-top-color:#d1d5db!important;}
   .ctrl .ch span{color:#000!important;}
   .iv,.at,.ao li{color:#000!important;}
   .icd-num,.icd-sum-num,.icd-sum-act,.icd-crit-val{color:#000!important;}
@@ -239,14 +249,7 @@ canvas{display:block;}
       <div class="vis-form-group"><label class="vis-input-lbl">Temperatura ambiente</label><input type="text" id="v-temp" class="vis-input" placeholder="°C" oninput="syncVis('temp')"><div class="vis-print-block" id="p-temp"></div></div>
       <div class="vis-form-group"><label class="vis-input-lbl">Tensión de operación</label><input type="text" id="v-tension" class="vis-input" placeholder="kV" oninput="syncVis('tension')"><div class="vis-print-block" id="p-tension"></div></div>
       <div class="vis-form-group full"><label class="vis-input-lbl">Observaciones del punto</label><textarea id="v-free" class="vis-input" style="min-height:52px;resize:vertical" placeholder="Información adicional relevante…" oninput="syncVis('free')"></textarea><div class="vis-print-block" id="p-free" style="white-space:pre-wrap;min-height:40px;"></div></div>
-      <div class="vis-form-group full">
-        <div class="crit-section">
-          <span class="crit-lbl">Criticidad del activo</span>
-          <div class="crit-btns" id="crit-btns"></div>
-          <div class="crit-desc" id="crit-desc" style="display:none"></div>
-          <div class="crit-print" id="crit-print"></div>
-        </div>
-      </div>
+      <div class="vis-form-group full"><div class="crit-section"><span class="crit-lbl">Criticidad del activo</span><div class="crit-btns" id="crit-btns"></div><div class="crit-desc" id="crit-desc" style="display:none"></div><div class="crit-print" id="crit-print"></div></div></div>
     </div>
   </div>
 </div>
@@ -260,51 +263,82 @@ canvas{display:block;}
     <div class="ri-row"><div class="ri-top"><span class="ri-lbl">Consistencia PRPD</span><div class="ri-btns" id="rib-cp"></div><span class="ri-print" id="rip-cp">—</span></div><div class="ri-msg" id="rim-cp" style="display:none"></div></div>
     <div class="pulse-row"><span class="pulse-lbl">Conteo de pulsos / min</span><span class="pulse-val" id="pulse-val">—</span></div>
     <div class="ov-ctrl"><div class="ov-row"><span style="font-size:10px;color:#9ca3af;">Opacidad overlay PRPD</span><span class="ov-val" id="vov">50%</span></div><input type="range" min="0" max="100" value="50" step="5" oninput="sOv(+this.value)" style="width:100%"></div>
-    <div class="ri-row"><div class="ri-top"><span class="ri-lbl">Tendencia Histórica</span><div class="ri-btns" id="rib-th"></div><span class="ri-print" id="rip-th">—</span></div><div class="ri-msg" id="rim-th" style="display:none"></div></div>
   </div>
-
   <div class="pnl" style="border-radius:8px;padding:14px;">
     <p class="slbl">Parámetros de medición</p>
     <div class="ctrl"><div class="ch"><span style="font-size:12px;font-weight:500;color:#f3f4f6;">Tipo de descarga parcial</span></div>
-      <div class="dp-grid">
-        <div class="dpb" id="bi" onclick="setDP('int')"><span>Interna</span><span class="dp-pct" id="pct-int"></span></div>
-        <div class="dpb" id="be" onclick="setDP('ext')"><span>Externa</span><span class="dp-pct" id="pct-ext"></span></div>
-        <div class="dpb" id="bs" onclick="setDP('sup')"><span>Superficial</span><span class="dp-pct" id="pct-sup"></span></div>
-        <div class="dpb" id="bo" onclick="setDP('oth')"><span>Otro</span><span class="dp-pct" id="pct-oth"></span></div>
-      </div>
+      <div class="dp-grid"><div class="dpb" id="bi" onclick="setDP('int')"><span>Interna</span><span class="dp-pct" id="pct-int"></span></div><div class="dpb" id="be" onclick="setDP('ext')"><span>Externa</span><span class="dp-pct" id="pct-ext"></span></div><div class="dpb" id="bs" onclick="setDP('sup')"><span>Superficial</span><span class="dp-pct" id="pct-sup"></span></div><div class="dpb" id="bo" onclick="setDP('oth')"><span>Otro</span><span class="dp-pct" id="pct-oth"></span></div></div>
     </div>
     <div class="hr"></div>
-    <div class="ctrl">
-      <div class="ch"><span style="font-size:12px;color:#9ca3af;">Patrón PRPD observado</span></div>
-      <select id="pat" onchange="upd()">
-        <option value="A">A — Disperso / bajo nivel</option>
-        <option value="B" selected>B — Agrupado 90°/270° (simétrico)</option>
-        <option value="C">C — Asimétrico (un semiciclo dominante)</option>
-        <option value="D">D — Irregular / múltiples fases</option>
-      </select>
-      <div class="pat-d-ctrl" id="pat-d-ctrl" style="display:none">
-        <!-- ── CAMBIO: texto actualizado ── -->
-        <div class="pat-d-ctrl-hdr">Fases de descarga</div>
-        <div class="pat-d-grid">
-          <div>
-            <div class="pat-d-lbl">Fase 1</div>
-            <select id="d-angle1" onchange="upd()">
-              <option value="0">0°</option><option value="45">45°</option><option value="90" selected>90°</option><option value="135">135°</option><option value="180">180°</option><option value="225">225°</option><option value="270">270°</option><option value="315">315°</option><option value="360">360°</option>
-            </select>
-          </div>
-          <div>
-            <div class="pat-d-lbl">Fase 2</div>
-            <select id="d-angle2" onchange="upd()">
-              <option value="0">0°</option><option value="45">45°</option><option value="90">90°</option><option value="135">135°</option><option value="180">180°</option><option value="225">225°</option><option value="270" selected>270°</option><option value="315">315°</option><option value="360">360°</option>
-            </select>
-          </div>
-        </div>
-        <div class="pat-d-print" id="pat-d-print" style="display:none"></div>
-      </div>
+    <div class="ctrl"><div class="ch"><span style="font-size:12px;color:#9ca3af;">Patrón PRPD observado</span></div>
+      <select id="pat" onchange="upd()"><option value="A">A — Disperso / bajo nivel</option><option value="B" selected>B — Agrupado 90°/270° (simétrico)</option><option value="C">C — Asimétrico (un semiciclo dominante)</option><option value="D">D — Irregular / múltiples fases</option></select>
+      <div class="pat-d-ctrl" id="pat-d-ctrl" style="display:none"><div class="pat-d-ctrl-hdr">Fases de descarga</div><div class="pat-d-grid"><div><div class="pat-d-lbl">Fase 1</div><select id="d-angle1" onchange="upd()"><option value="0">0°</option><option value="45">45°</option><option value="90" selected>90°</option><option value="135">135°</option><option value="180">180°</option><option value="225">225°</option><option value="270">270°</option><option value="315">315°</option><option value="360">360°</option></select></div><div><div class="pat-d-lbl">Fase 2</div><select id="d-angle2" onchange="upd()"><option value="0">0°</option><option value="45">45°</option><option value="90">90°</option><option value="135">135°</option><option value="180">180°</option><option value="225">225°</option><option value="270" selected>270°</option><option value="315">315°</option><option value="360">360°</option></select></div></div><div class="pat-d-print" id="pat-d-print" style="display:none"></div></div>
     </div>
     <div class="ctrl"><div class="ch"><span style="font-size:12px;color:#9ca3af;">Amplitud máxima detectada</span><span style="font-size:12px;font-weight:500;color:#f3f4f6;" id="va">50%</span></div><input type="range" min="0" max="100" value="50" step="1" oninput="sA(+this.value)"></div>
     <div class="ctrl"><div class="ch"><span style="font-size:12px;color:#9ca3af;">Asimetría entre semiciclos</span><span style="font-size:12px;font-weight:500;color:#f3f4f6;" id="vb">Nivelado</span></div><input type="range" min="-100" max="100" value="0" step="1" id="rasym" oninput="sB(+this.value)"><div class="asym-hints"><span>◀ sem.(+) 90°</span><span>sem.(−) 270° ▶</span></div></div>
     <div class="ctrl"><div class="ch"><span style="font-size:12px;color:#9ca3af;">Densidad de pulsos</span><span style="font-size:12px;font-weight:500;color:#f3f4f6;" id="vc">Media</span></div><input type="range" min="1" max="4" value="2" step="1" oninput="sC(+this.value)"></div>
+  </div>
+</div>
+
+<!-- ══ PRPD DIGITAL ══ -->
+<div class="pnl" id="dig-pnl" data-inactive="false" style="border-radius:8px;padding:14px;margin-bottom:12px;display:none;">
+  <div class="dig-progress" id="dig-progress" style="display:none;">
+    <div class="dig-spinner"></div>
+    <span id="dig-progress-msg">Renderizando PRPD desde coordenadas PDF originales…</span>
+  </div>
+  <div id="dig-content" style="display:none;">
+    <div class="conf-header">
+      <p class="slbl" style="margin-bottom:0">PRPD Digital</p>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div id="ref-toggle-wrap" style="display:none;align-items:center;gap:6px;">
+          <span style="font-size:9px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;color:#BF00FF;" id="ref-toggle-lbl">REF. ACTIVA</span>
+          <label class="toggle-sw"><input type="checkbox" id="ref-toggle" checked onchange="toggleRefLayer()"><span class="toggle-track" style="background:#660088;border-color:#BF00FF;"></span></label>
+        </div>
+        <button class="import-btn" id="ref-btn" onclick="document.getElementById('refPdfInput').click()" style="border-color:#BF00FF;color:#BF00FF;gap:5px;">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+          Referencia
+        </button>
+        <button class="import-clear" id="ref-clear-btn" style="display:none;color:#BF00FF;border-color:#660088;" onclick="clearRefPRPD()" title="Limpiar referencia">✕</button>
+        <input type="file" id="refPdfInput" accept=".pdf" style="display:none" onchange="loadRefPRPD(this)">
+        <div class="conf-toggle-wrap">
+          <span class="conf-toggle-lbl on" id="dig-toggle-lbl">ACTIVO</span>
+          <label class="toggle-sw"><input type="checkbox" id="dig-toggle" checked onchange="toggleDigPanel()"><span class="toggle-track"></span></label>
+        </div>
+      </div>
+    </div>
+    <div id="dig-body" style="display:block;margin-top:10px;">
+      <div class="dig-ctrl-row" id="dig-ctrl-row">
+        <div class="dig-ctrl-group">
+          <span class="dig-ctrl-lbl">Tamaño de punto</span>
+          <input type="range" id="dig-size" min="0" max="4" step="1" value="2" oninput="sDigSize(+this.value)" style="width:90px;">
+          <span class="dig-ctrl-val" id="dig-size-val">1 px</span>
+        </div>
+        <div style="width:1px;background:#374151;height:24px;flex-shrink:0;"></div>
+        <div class="dig-ctrl-group">
+          <span class="dig-ctrl-lbl">Opacidad</span>
+          <input type="range" id="dig-opacity" min="0" max="100" step="5" value="100" oninput="sDigOpacity(+this.value)" style="width:90px;">
+          <span class="dig-ctrl-val" id="dig-opacity-val">100%</span>
+        </div>
+        <div style="width:1px;background:#374151;height:24px;flex-shrink:0;"></div>
+        <div class="dig-ctrl-group" style="flex-wrap:wrap;">
+          <span class="dig-ctrl-lbl">Color</span>
+          <button class="tog-btn active" id="dcol-orig" onclick="setDigColor('orig')">Estándar</button>
+          <button class="tog-btn" id="dcol-mag" onclick="setDigColor('mag')">Por magnitud</button>
+          <button class="tog-btn" id="dcol-den" onclick="setDigColor('den')">Por densidad</button>
+        </div>
+      </div>
+      <canvas id="dig-cv" height="250" style="width:100%;background:#070c14;border:1px solid #374151;border-radius:4px;cursor:crosshair;"></canvas>
+      <canvas id="dig-cbar" height="16" style="width:100%;border-radius:3px;margin-top:5px;display:none;"></canvas>
+      <div id="dig-cbar-labels" style="display:none;justify-content:space-between;font-size:9px;color:#6b7280;padding:0 2px;margin-top:2px;"></div>
+      <div class="dig-stat-row">
+        <div class="dig-stat"><span class="dig-stat-lbl">Puntos</span><span class="dig-stat-val" id="dstat-pts">—</span></div>
+        <div class="dig-stat"><span class="dig-stat-lbl">Pico magnitud</span><span class="dig-stat-val" id="dstat-peak">—</span></div>
+        <div class="dig-stat"><span class="dig-stat-lbl">Media magnitud</span><span class="dig-stat-val" id="dstat-avg">—</span></div>
+        <div class="dig-stat"><span class="dig-stat-lbl">Fase con mayor magnitud</span><span class="dig-stat-val" id="dstat-peakphase">—</span></div>
+        <div class="dig-stat"><span class="dig-stat-lbl">Semi Ciclo con mayor Densidad</span><span class="dig-stat-val" id="dstat-domsemi">—</span></div>
+      </div>
+      <div class="ri-row" style="margin-top:8px;padding-top:8px;border-top:1px solid #374151;"><div class="ri-top"><span class="ri-lbl">Tendencia Histórica</span><div class="ri-btns" id="rib-th"></div><span class="ri-print" id="rip-th">—</span></div><div class="ri-msg" id="rim-th" style="display:none"></div></div>
+    </div>
   </div>
 </div>
 
@@ -313,14 +347,10 @@ canvas{display:block;}
   <div class="pdf-file-row" id="pdf-file-row"><span class="pdf-file-label">Reporte origen:</span><span class="pdf-file-name" id="pdf-file-name"></span></div>
   <div class="rrow"><span class="rl">Índice de riesgo</span><div class="rbo" id="rbo"><div class="rt" id="rt" style="left:50%"></div></div><span class="rs" id="rs">—</span></div>
   <div class="hr"></div>
-  <div class="i3">
-    <div><div class="il">Categoría PRPD</div><div class="iv" id="dc">—</div></div>
-    <div><div class="il">Tipo DP detectado</div><div class="iv" id="dd">—</div></div>
-    <div><div class="il">Nivel de acción</div><div class="iv" id="dl">—</div></div>
-  </div>
+  <div class="i3"><div><div class="il">Categoría PRPD</div><div class="iv" id="dc">—</div></div><div><div class="il">Tipo DP detectado</div><div class="iv" id="dd">—</div></div><div><div class="il">Nivel de acción</div><div class="iv" id="dl">—</div></div></div>
   <div class="abox" id="abox"><div class="at" id="at"></div><ul class="ao" id="ao"></ul></div>
   <div class="norm-box" id="norm-box" style="display:none"><p id="norm-text"></p></div>
-  <div class="obs-box"><span class="obs-label">Observaciones generales</span><textarea id="obs-ta" class="obs-ta" placeholder="Observaciones del técnico, historial del tramo, condiciones adicionales…" oninput="syncObs()"></textarea><div class="obs-print" id="obs-print"></div></div>
+  <div class="obs-box"><span class="obs-label">Observaciones generales</span><textarea id="obs-ta" class="obs-ta" placeholder="Observaciones del técnico, historial del tramo…" oninput="syncObs()"></textarea><div class="obs-print" id="obs-print"></div></div>
   <p class="fnote">Herramienta de apoyo al diagnóstico. Las decisiones de intervención deben ser validadas por personal técnico calificado.</p>
 </div>
 
@@ -328,22 +358,8 @@ canvas{display:block;}
   <div class="conf-header"><p class="slbl" style="margin-bottom:0">Evidencia Complementaria</p><div class="conf-toggle-wrap"><span class="conf-toggle-lbl" id="conf-lbl">INACTIVO</span><label class="toggle-sw"><input type="checkbox" id="conf-toggle" onchange="toggleConf()"><span class="toggle-track"></span></label></div></div>
   <p class="sec-desc" style="margin-top:6px;margin-bottom:0;">La evidencia visual y térmica complementa la información eléctrica al proporcionar indicios directos del impacto físico de una <strong style="font-weight:700;color:#c2410c;font-style:normal;">Descarga Superficial</strong> sobre el aislamiento.</p>
   <div class="conf-content" id="conf-content" style="display:none">
-    <div class="conf-block">
-      <div class="conf-block-hdr"><span class="conf-block-title">Visual</span><button class="import-btn" onclick="document.getElementById('img-inp-ev').click()"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>Importar imagen</button><button class="import-clear" id="img-clr-ev" style="display:none" onclick="clearConfImg('ev')">✕</button><input type="file" id="img-inp-ev" accept="image/*" style="display:none" onchange="loadConfImg('ev',this)"></div>
-      <p class="conf-block-desc">La inspección visual permite identificar rastros de carbonización, erosión, contaminación o degradación superficial.</p>
-      <div id="conf-loaded-ev" style="display:none">
-        <div class="ri-row" style="border-top:none;margin-top:8px;padding-top:0;"><div class="ri-top"><span class="ri-lbl">Evidencia Visual</span><div class="ri-btns" id="rib-ev"></div><span class="ri-print" id="rip-ev">—</span></div><div class="ri-msg" id="rim-ev" style="display:none"></div></div>
-        <div class="conf-img-obs"><img id="conf-img-ev" alt="Evidencia Visual"><div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:10px;font-weight:500;color:#9ca3af;">Observaciones</span><textarea id="conf-obs-ev" class="conf-obs" placeholder="Describa la evidencia visual observada…" oninput="syncConfObs('ev')"></textarea><div class="conf-obs-print" id="conf-obs-print-ev"></div></div></div>
-      </div>
-    </div>
-    <div class="conf-block">
-      <div class="conf-block-hdr"><span class="conf-block-title">Térmica</span><button class="import-btn" onclick="document.getElementById('img-inp-ct').click()"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>Importar imagen</button><button class="import-clear" id="img-clr-ct" style="display:none" onclick="clearConfImg('ct')">✕</button><input type="file" id="img-inp-ct" accept="image/*" style="display:none" onchange="loadConfImg('ct',this)"></div>
-      <p class="conf-block-desc">La inspección térmica ayuda a detectar puntos de calentamiento asociados a pérdidas dieléctricas y actividad persistente.</p>
-      <div id="conf-loaded-ct" style="display:none">
-        <div class="ri-row" style="border-top:none;margin-top:8px;padding-top:0;"><div class="ri-top"><span class="ri-lbl">Correlación Térmica</span><div class="ri-btns" id="rib-ct"></div><span class="ri-print" id="rip-ct">—</span></div><div class="ri-msg" id="rim-ct" style="display:none"></div></div>
-        <div class="conf-img-obs"><img id="conf-img-ct" alt="Correlación Térmica"><div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:10px;font-weight:500;color:#9ca3af;">Observaciones</span><textarea id="conf-obs-ct" class="conf-obs" placeholder="Describa la correlación térmica identificada…" oninput="syncConfObs('ct')"></textarea><div class="conf-obs-print" id="conf-obs-print-ct"></div></div></div>
-      </div>
-    </div>
+    <div class="conf-block"><div class="conf-block-hdr"><span class="conf-block-title">Visual</span><button class="import-btn" onclick="document.getElementById('img-inp-ev').click()"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>Importar imagen</button><button class="import-clear" id="img-clr-ev" style="display:none" onclick="clearConfImg('ev')">✕</button><input type="file" id="img-inp-ev" accept="image/*" style="display:none" onchange="loadConfImg('ev',this)"></div><p class="conf-block-desc">La inspección visual permite identificar rastros de carbonización, erosión, contaminación o degradación superficial.</p><div id="conf-loaded-ev" style="display:none"><div class="ri-row" style="border-top:none;margin-top:8px;padding-top:0;"><div class="ri-top"><span class="ri-lbl">Evidencia Visual</span><div class="ri-btns" id="rib-ev"></div><span class="ri-print" id="rip-ev">—</span></div><div class="ri-msg" id="rim-ev" style="display:none"></div></div><div class="conf-img-obs"><img id="conf-img-ev" alt="Evidencia Visual"><div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:10px;font-weight:500;color:#9ca3af;">Observaciones</span><textarea id="conf-obs-ev" class="conf-obs" placeholder="Describa la evidencia visual observada…" oninput="syncConfObs('ev')"></textarea><div class="conf-obs-print" id="conf-obs-print-ev"></div></div></div></div></div>
+    <div class="conf-block"><div class="conf-block-hdr"><span class="conf-block-title">Térmica</span><button class="import-btn" onclick="document.getElementById('img-inp-ct').click()"><svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>Importar imagen</button><button class="import-clear" id="img-clr-ct" style="display:none" onclick="clearConfImg('ct')">✕</button><input type="file" id="img-inp-ct" accept="image/*" style="display:none" onchange="loadConfImg('ct',this)"></div><p class="conf-block-desc">La inspección térmica ayuda a detectar puntos de calentamiento asociados a pérdidas dieléctricas y actividad persistente.</p><div id="conf-loaded-ct" style="display:none"><div class="ri-row" style="border-top:none;margin-top:8px;padding-top:0;"><div class="ri-top"><span class="ri-lbl">Correlación Térmica</span><div class="ri-btns" id="rib-ct"></div><span class="ri-print" id="rip-ct">—</span></div><div class="ri-msg" id="rim-ct" style="display:none"></div></div><div class="conf-img-obs"><img id="conf-img-ct" alt="Correlación Térmica"><div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:10px;font-weight:500;color:#9ca3af;">Observaciones</span><textarea id="conf-obs-ct" class="conf-obs" placeholder="Describa la correlación térmica identificada…" oninput="syncConfObs('ct')"></textarea><div class="conf-obs-print" id="conf-obs-print-ct"></div></div></div></div></div>
   </div>
 </div>
 
@@ -368,11 +384,24 @@ canvas{display:block;}
 let dp='int',pat='B',amp=50,asym=0,dens=2,overlayOpacity=50;
 let pdfChartCanvas=null,pdfFullPage=null,pdfFileName='';
 let isPrinting=false;
-window.addEventListener('beforeprint',()=>{isPrinting=true;updateConfidence();});
-window.addEventListener('afterprint',()=>{isPrinting=false;updateConfidence();});
-const PDF_SCALE=2.5;
-const PRPD_PT={x1:122.85,y1:442.85,x2:520.71,y2:648.57};
+let digPts=[],digHover=null,digColor='orig';
+let digPanelActive=true;
+const DIG_SIZE_VALS=[0.25,0.5,1,1.5,2];
+let digSize=DIG_SIZE_VALS[2];
+let digOpacity=100;
+/* ── Referencia PRPD ── */
+let refPts=[];
+let refVisible=true;
+let refLoaded=false;
+
+/* ── Coordenadas separadas: recorte/overlay (Gráfico PRPD) vs digitalización ── */
+const PRPD_PT_OVERLAY={x1:124,y1:444,x2:520,y2:648};
+const PRPD_PT_DIGITAL={x1:76,y1:431,x2:529,y2:676};
+const PRPD_PT_REF={x1:76,y1:431,x2:529,y2:676};
 const VIS_PT={x1:78.02,y1:76.22,x2:544.58,y2:387.26};
+const PDF_SCALE=2.5;
+const DIG_SCALE=5;
+const MAG_SCALE=600;
 const TH={int:[25,50,75],ext:[35,60,80],sup:[40,65,85],oth:[40,65,85]};
 const DPN={int:'Interna',ext:'Externa',sup:'Superficial',oth:'Otro / No identificado'};
 const PATN={A:'A — Disperso / bajo nivel',B:'B — Agrupado 90°/270°',C:'C — Asimétrico (semiciclo)',D:'D — Irregular / múltiples fases'};
@@ -382,14 +411,354 @@ const VIS_IDS=['spec','sube','equipo','ubic','clima','prec','temp','tension','fr
 const LVL={ok:'Monitoreo rutinario',watch:'Vigilancia intensiva',prog:'Intervención programada',urg:'Intervención urgente',oth:'Descarga no identificada'};
 const cv=document.getElementById('cv');const cx=cv.getContext('2d');
 const radarCv=document.getElementById('radar-cv');const radarCx=radarCv.getContext('2d');
+const digCv=document.getElementById('dig-cv');const digCtx=digCv?digCv.getContext('2d'):null;
 if(typeof pdfjsLib!=='undefined')pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-function getDAngles(){const a1=+(document.getElementById('d-angle1')?.value??90);const a2=+(document.getElementById('d-angle2')?.value??270);return[a1,a2];}
+window.addEventListener('beforeprint',()=>{isPrinting=true;updateConfidence();});
+window.addEventListener('afterprint',()=>{isPrinting=false;updateConfidence();});
+
+function colormap(t){
+  t=Math.max(0,Math.min(1,t));let r,g,b;
+  if(t<0.25){const f=t/0.25;r=0;g=Math.round(f*220);b=Math.round(80+f*175);}
+  else if(t<0.5){const f=(t-0.25)/0.25;r=0;g=220+Math.round(f*35);b=Math.round(255*(1-f));}
+  else if(t<0.75){const f=(t-0.5)/0.25;r=Math.round(f*255);g=255;b=0;}
+  else{const f=(t-0.75)/0.25;r=255;g=Math.round(255*(1-f));b=0;}
+  return[r,g,b];
+}
+function hslToRgb(h,s,l){
+  let r,g,b;
+  if(s===0){r=g=b=l;}
+  else{
+    const hue2rgb=(p,q,t)=>{if(t<0)t+=1;if(t>1)t-=1;if(t<1/6)return p+(q-p)*6*t;if(t<1/2)return q;if(t<2/3)return p+(q-p)*(2/3-t)*6;return p;};
+    const q=l<0.5?l*(1+s):l+s-l*s;const p=2*l-q;
+    r=hue2rgb(p,q,h+1/3);g=hue2rgb(p,q,h);b=hue2rgb(p,q,h-1/3);
+  }
+  return[Math.round(r*255),Math.round(g*255),Math.round(b*255)];
+}
+function colormapVivid(t){
+  t=Math.max(0,Math.min(1,t));
+  const hue=(240-t*240)/360;
+  return hslToRgb(hue,1,0.5);
+}
+function drawColorbar(l0,l1,show,cmFn){
+  cmFn=cmFn||colormap;
+  const cb=document.getElementById('dig-cbar'),lbs=document.getElementById('dig-cbar-labels');
+  if(!show){cb.style.display='none';lbs.style.display='none';return;}
+  cb.style.display='block';lbs.style.display='flex';lbs.innerHTML=`<span>${l0}</span><span>${l1}</span>`;
+  const W=cb.offsetWidth||600;cb.width=W;cb.height=16;
+  const ctx2=cb.getContext('2d');
+  const grd=ctx2.createLinearGradient(0,0,W,0);
+  for(let i=0;i<=20;i++){const[r,g,bv]=cmFn(i/20);grd.addColorStop(i/20,`rgb(${r},${g},${bv})`);}
+  ctx2.fillStyle=grd;ctx2.fillRect(0,0,W,16);
+  ctx2.strokeStyle='rgba(0,0,0,0.25)';ctx2.strokeRect(0.5,0.5,W-1,15);
+}
+
+function isYellow(r,g,b){
+  const mx=Math.max(r,g,b),mn=Math.min(r,g,b);
+  const sat=mx>0?(mx-mn)/mx:0;
+  return r>130&&g>110&&b<150&&(r-b)>40&&(g-b)>30&&sat>0.20;
+}
+
+function extractPRPDPoints(srcCv){
+  if(!srcCv||srcCv.width===0||srcCv.height===0)return{pts:[],excRows:0,excCols:0,yellowCells:0};
+  const W=srcCv.width,H=srcCv.height;
+  let imgData;
+  try{imgData=srcCv.getContext('2d').getImageData(0,0,W,H);}catch(e){return{pts:[],excRows:0,excCols:0,yellowCells:0};}
+  const data=imgData.data;
+  const lx=Math.floor(W*0.105),rx=Math.floor(W*0.975);
+  const ty=Math.floor(H*0.048),by=Math.floor(H*0.875);
+  const pW=rx-lx,pH=by-ty;
+  if(pW<=0||pH<=0)return{pts:[],excRows:0,excCols:0,yellowCells:0};
+  function isSignal(r,g,b){
+    const br=(r+g+b)/3;
+    if(br<24)return false;
+    const mx=Math.max(r,g,b),mn=Math.min(r,g,b);
+    const sat=mx>0?(mx-mn)/mx:0;
+    if(br>190&&sat<0.20)return false;
+    if(sat<0.08&&br<78)return false;
+    return true;
+  }
+  const rowHits=new Uint16Array(H),colHits=new Uint16Array(W);
+  for(let py=ty;py<by;py++){
+    for(let px=lx;px<rx;px++){
+      const i4=(py*W+px)*4;
+      const r=data[i4],g=data[i4+1],b=data[i4+2];
+      if(isSignal(r,g,b)&&!isYellow(r,g,b)){rowHits[py]++;colHits[px]++;}
+    }
+  }
+  const isGridRow=new Uint8Array(H),isGridCol=new Uint8Array(W);
+  const rowThr=Math.floor(pW*0.40),colThr=Math.floor(pH*0.52);
+  let excRows=0,excCols=0;
+  for(let py=ty;py<by;py++){if(rowHits[py]>rowThr){isGridRow[Math.max(0,py-1)]=isGridRow[py]=isGridRow[Math.min(H-1,py+1)]=1;excRows++;}}
+  for(let px=lx;px<rx;px++){if(colHits[px]>colThr){isGridCol[Math.max(0,px-1)]=isGridCol[px]=isGridCol[Math.min(W-1,px+1)]=1;excCols++;}}
+  const NC=360,NR=200;
+  const YELLOW_WEIGHT=8;
+  const gR=new Uint32Array(NC*NR),gG=new Uint32Array(NC*NR),gB=new Uint32Array(NC*NR),gC=new Uint32Array(NC*NR);
+  const yCell=new Uint8Array(NC*NR);
+  for(let py=ty;py<by;py++){
+    for(let px=lx;px<rx;px++){
+      const i4=(py*W+px)*4;
+      const r=data[i4],g=data[i4+1],b=data[i4+2];
+      if(!isSignal(r,g,b))continue;
+      const yellow=isYellow(r,g,b);
+      if(!yellow&&(isGridRow[py]||isGridCol[px]))continue;
+      const ci=Math.min(NC-1,Math.floor((px-lx)/pW*NC));
+      const ri=Math.min(NR-1,NR-1-Math.floor((py-ty)/pH*NR));
+      const gi=ri*NC+ci;
+      const w=yellow?YELLOW_WEIGHT:1;
+      gR[gi]+=r*w;gG[gi]+=g*w;gB[gi]+=b*w;gC[gi]+=w;
+      if(yellow)yCell[gi]=1;
+    }
+  }
+  let yellowCells=0;for(let i=0;i<yCell.length;i++)yellowCells+=yCell[i];
+  const pts=[];
+  for(let ri=0;ri<NR;ri++){for(let ci=0;ci<NC;ci++){const gi=ri*NC+ci;const cnt=gC[gi];if(cnt>=1)pts.push({phase:(ci+0.5)/NC*360,mag:(ri+0.5)/NR*100,r:Math.round(gR[gi]/cnt),g:Math.round(gG[gi]/cnt),b:Math.round(gB[gi]/cnt),n:cnt});}}
+  return{pts,excRows,excCols,yellowCells};
+}
+
+async function digitizePRPD(pdfPage){
+  const pnl=document.getElementById('dig-pnl'),prog=document.getElementById('dig-progress'),cont=document.getElementById('dig-content');
+  pnl.style.display='block';prog.style.display='flex';cont.style.display='none';
+  document.getElementById('dig-progress-msg').textContent=`Renderizando PRPD a ${DIG_SCALE}× desde coordenadas PDF (x:${PRPD_PT_DIGITAL.x1}–${PRPD_PT_DIGITAL.x2}, y:${PRPD_PT_DIGITAL.y1}–${PRPD_PT_DIGITAL.y2})…`;
+  try{
+    const vpHR=pdfPage.getViewport({scale:DIG_SCALE});
+    const hrFull=document.createElement('canvas');
+    hrFull.width=vpHR.width;hrFull.height=vpHR.height;
+    await pdfPage.render({canvasContext:hrFull.getContext('2d'),viewport:vpHR}).promise;
+    const s=DIG_SCALE;
+    const cL=Math.floor(PRPD_PT_DIGITAL.x1*s),cT=Math.floor(PRPD_PT_DIGITAL.y1*s);
+    const cW=Math.ceil((PRPD_PT_DIGITAL.x2-PRPD_PT_DIGITAL.x1)*s),cH2=Math.ceil((PRPD_PT_DIGITAL.y2-PRPD_PT_DIGITAL.y1)*s);
+    const digSrc=document.createElement('canvas');
+    digSrc.width=cW;digSrc.height=cH2;
+    digSrc.getContext('2d').drawImage(hrFull,cL,cT,cW,cH2,0,0,cW,cH2);
+    const{pts,excRows,excCols,yellowCells}=extractPRPDPoints(digSrc);
+    digPts=pts;
+    prog.style.display='none';
+    cont.style.display='block';
+    const digBody=document.getElementById('dig-body');
+    if(digBody)digBody.style.display=digPanelActive?'block':'none';
+    pnl.dataset.inactive=digPanelActive?'false':'true';
+    if(pts.length>=5){
+      const total=pts.reduce((a,p)=>a+p.n,0);
+      const pos=pts.filter(p=>p.phase<=180).reduce((a,p)=>a+p.n,0);
+      const neg=total-pos;
+      const peak=Math.max(...pts.map(p=>p.mag));
+      const avg=pts.reduce((a,p)=>a+p.mag*p.n,0)/total;
+      let peakPhase=0,maxMagVal=-1;
+      pts.forEach(p=>{if(p.mag>maxMagVal){maxMagVal=p.mag;peakPhase=p.phase;}});
+      document.getElementById('dstat-pts').textContent=pts.length.toLocaleString('es-CL');
+      document.getElementById('dstat-peak').textContent=peak.toFixed(1)+'%';
+      document.getElementById('dstat-avg').textContent=avg.toFixed(1)+'%';
+      document.getElementById('dstat-peakphase').textContent=peakPhase.toFixed(1)+'°';
+      document.getElementById('dstat-domsemi').textContent=pos>=neg?'(+) 0–180°':'(−) 180–360°';
+      setTimeout(drawDigPRPD,30);
+    }
+  }catch(e){
+    prog.style.display='none';cont.style.display='block';
+    console.error('Error en la digitalización PRPD:',e);
+  }
+}
+
+function sDigSize(i){digSize=DIG_SIZE_VALS[i];document.getElementById('dig-size-val').textContent=digSize+' px';drawDigPRPD();}
+function sDigOpacity(v){digOpacity=v;document.getElementById('dig-opacity-val').textContent=v+'%';drawDigPRPD();}
+function setDigColor(c){digColor=c;['orig','mag','den'].forEach(k=>document.getElementById('dcol-'+k).className='tog-btn'+(k===c?' active':''));drawDigPRPD();}
+
+function toggleDigPanel(){
+  const on=document.getElementById('dig-toggle').checked;
+  digPanelActive=on;
+  const body=document.getElementById('dig-body');
+  if(body)body.style.display=on?'block':'none';
+  const lbl=document.getElementById('dig-toggle-lbl');
+  lbl.textContent=on?'ACTIVO':'INACTIVO';
+  lbl.className='conf-toggle-lbl'+(on?' on':'');
+  const pnl=document.getElementById('dig-pnl');
+  if(pnl)pnl.dataset.inactive=on?'false':'true';
+  if(on&&digPts.length)setTimeout(drawDigPRPD,0);
+}
+
+function toggleRefLayer(){
+  refVisible=document.getElementById('ref-toggle').checked;
+  const lbl=document.getElementById('ref-toggle-lbl');
+  lbl.textContent=refVisible?'REF. ACTIVA':'REF. OCULTA';
+  lbl.style.color=refVisible?'#BF00FF':'#6b7280';
+  drawDigPRPD();
+}
+
+async function loadRefPRPD(input){
+  const file=input.files[0];if(!file)return;
+  const progEl=document.getElementById('dig-progress');
+  const progMsg=document.getElementById('dig-progress-msg');
+  if(progEl){progEl.style.display='flex';}
+  if(progMsg)progMsg.textContent='Cargando PDF de referencia…';
+  try{
+    const buf=await file.arrayBuffer();
+    const pdf=await pdfjsLib.getDocument({data:buf}).promise;
+    const pg=await pdf.getPage(Math.min(2,pdf.numPages));
+    const vpHR=pg.getViewport({scale:DIG_SCALE});
+    const hrFull=document.createElement('canvas');
+    hrFull.width=vpHR.width;hrFull.height=vpHR.height;
+    if(progMsg)progMsg.textContent='Renderizando gráfico de referencia…';
+    await pg.render({canvasContext:hrFull.getContext('2d'),viewport:vpHR}).promise;
+    const s=DIG_SCALE;
+    const cL=Math.floor(PRPD_PT_REF.x1*s),cT=Math.floor(PRPD_PT_REF.y1*s);
+    const cW=Math.ceil((PRPD_PT_REF.x2-PRPD_PT_REF.x1)*s),cH2=Math.ceil((PRPD_PT_REF.y2-PRPD_PT_REF.y1)*s);
+    const refSrc=document.createElement('canvas');
+    refSrc.width=cW;refSrc.height=cH2;
+    refSrc.getContext('2d').drawImage(hrFull,cL,cT,cW,cH2,0,0,cW,cH2);
+    const{pts}=extractPRPDPoints(refSrc);
+    refPts=pts;
+    refLoaded=true;
+    refVisible=true;
+    input.value='';
+    if(progEl)progEl.style.display='none';
+    /* Mostrar controles de referencia */
+    const tw=document.getElementById('ref-toggle-wrap');
+    if(tw)tw.style.display='flex';
+    const cb=document.getElementById('ref-clear-btn');
+    if(cb)cb.style.display='inline-flex';
+    const rb=document.getElementById('ref-btn');
+    if(rb){rb.style.borderColor='#9900CC';rb.style.color='#9900CC';rb.title='PDF de referencia cargado: '+file.name;}
+    const rtl=document.getElementById('ref-toggle');
+    if(rtl)rtl.checked=true;
+    const rlbl=document.getElementById('ref-toggle-lbl');
+    if(rlbl){rlbl.textContent='REF. ACTIVA';rlbl.style.color='#BF00FF';}
+    drawDigPRPD();
+  }catch(e){
+    if(progEl)progEl.style.display='none';
+    console.error('Error cargando PDF de referencia:',e);
+  }
+}
+
+function clearRefPRPD(){
+  refPts=[];refLoaded=false;refVisible=false;
+  document.getElementById('refPdfInput').value='';
+  const tw=document.getElementById('ref-toggle-wrap');if(tw)tw.style.display='none';
+  const cb=document.getElementById('ref-clear-btn');if(cb)cb.style.display='none';
+  const rb=document.getElementById('ref-btn');if(rb){rb.style.borderColor='#BF00FF';rb.style.color='#BF00FF';rb.title='';}
+  drawDigPRPD();
+}
+
+function drawDigPRPD(){
+  if(!digCv||!digCtx||!digPts.length)return;
+  const W=digCv.offsetWidth||600;digCv.width=W;digCv.height=250;
+  const P={t:22,r:14,b:32,l:50};
+  const cW=W-P.l-P.r,cH=250-P.t-P.b;
+  const xp=ph=>P.l+(ph/360)*cW,yp=mg=>P.t+cH*(1-mg/100);
+  const th=TH[dp]||TH.sup;
+  digCtx.fillStyle='#070c14';digCtx.fillRect(0,0,W,250);
+  [[0,th[0],'rgba(22,163,74,0.12)'],[th[0],th[1],'rgba(202,138,4,0.12)'],[th[1],th[2],'rgba(234,88,12,0.12)'],[th[2],100,'rgba(220,38,38,0.14)']].forEach(([f,t,col])=>{digCtx.fillStyle=col;digCtx.fillRect(P.l,yp(t),cW,yp(f)-yp(t));});
+  digCtx.strokeStyle='rgba(255,255,255,0.07)';digCtx.lineWidth=0.7;
+  [90,180,270].forEach(a=>{digCtx.beginPath();digCtx.moveTo(xp(a),P.t);digCtx.lineTo(xp(a),P.t+cH);digCtx.stroke();});
+  const tc=['#16a34a','#ca8a04','#ea580c'];
+  th.forEach((t,i)=>{digCtx.beginPath();digCtx.setLineDash([4,4]);digCtx.strokeStyle=tc[i]+'55';digCtx.lineWidth=0.7;digCtx.moveTo(P.l,yp(t));digCtx.lineTo(P.l+cW,yp(t));digCtx.stroke();digCtx.setLineDash([]);});
+
+  const maxN=digPts.reduce((a,p)=>Math.max(a,p.n),1);
+  const sorted=[...digPts].sort((a,b)=>a.n-b.n);
+
+  /* ── Capa de referencia (morado) — dibujada primero, queda subyacente ── */
+  if(refLoaded&&refVisible&&refPts.length){
+    const refMaxN=refPts.reduce((a,p)=>Math.max(a,p.n),1);
+    const refSorted=[...refPts].sort((a,b)=>a.n-b.n);
+    refSorted.forEach(pt=>{
+      const x=xp(pt.phase),y=yp(pt.mag);
+      const norm=pt.n/refMaxN;
+      const logS=Math.log10(pt.n+1)/Math.log10(refMaxN+1);
+      const r=Math.max(0.4,digSize*(0.72+0.28*logS));
+      const alpha=Math.min(0.82,0.18+norm*0.64);
+      if(norm>0.35){digCtx.beginPath();digCtx.arc(x,y,r*2.6,0,Math.PI*2);digCtx.fillStyle=`rgba(191,0,255,0.10)`;digCtx.fill();}
+      digCtx.beginPath();digCtx.arc(x,y,r,0,Math.PI*2);digCtx.fillStyle=`rgba(191,0,255,${alpha})`;digCtx.fill();
+    });
+    /* Leyenda de referencia */
+    digCtx.fillStyle='rgba(191,0,255,0.85)';digCtx.fillRect(P.l+4,P.t+18,7,7);
+    digCtx.fillStyle='rgba(210,100,255,0.75)';digCtx.font='8px sans-serif';digCtx.textAlign='left';
+    digCtx.fillText('Ref.',P.l+13,P.t+25);
+  }
+
+  sorted.forEach(pt=>{
+    const x=xp(pt.phase),y=yp(pt.mag);
+    const norm=pt.n/maxN;
+    const logS=Math.log10(pt.n+1)/Math.log10(maxN+1);
+    const r=Math.max(0.4,digSize*(0.72+0.28*logS));
+    const alpha=Math.min(0.96,0.25+norm*0.71);
+    let cr,cg,cb;
+    if(digColor==='orig'){cr=pt.r;cg=pt.g;cb=pt.b;}
+    else if(digColor==='mag'){[cr,cg,cb]=colormapVivid(pt.mag/100);}
+    else{[cr,cg,cb]=colormap(norm);}
+    const mainAlpha=alpha*(digOpacity/100);
+    if(norm>0.35){digCtx.beginPath();digCtx.arc(x,y,r*2.6,0,Math.PI*2);digCtx.fillStyle=`rgba(${cr},${cg},${cb},${0.10*(digOpacity/100)})`;digCtx.fill();}
+    digCtx.beginPath();digCtx.arc(x,y,r,0,Math.PI*2);digCtx.fillStyle=`rgba(${cr},${cg},${cb},${mainAlpha})`;digCtx.fill();
+  });
+  if(digColor==='mag')drawColorbar('Magnitud 0%','100%',true,colormapVivid);
+  else if(digColor==='den')drawColorbar('Baja densidad','Alta densidad',true,colormap);
+  else drawColorbar('','',false);
+
+  if(digHover){
+    const hx=xp(digHover.phase),hy=yp(digHover.mag);
+    digCtx.strokeStyle='rgba(255,255,255,0.28)';digCtx.lineWidth=0.7;digCtx.setLineDash([3,3]);
+    digCtx.beginPath();digCtx.moveTo(hx,P.t);digCtx.lineTo(hx,P.t+cH);digCtx.stroke();
+    digCtx.beginPath();digCtx.moveTo(P.l,hy);digCtx.lineTo(P.l+cW,hy);digCtx.stroke();digCtx.setLineDash([]);
+    digCtx.beginPath();digCtx.arc(hx,hy,8,0,Math.PI*2);digCtx.strokeStyle='rgba(250,204,21,0.8)';digCtx.lineWidth=1.5;digCtx.stroke();
+    let zi2=3;for(let i=0;i<th.length;i++)if(digHover.mag<th[i]){zi2=i;break;}
+    const zC=['#16a34a','#ca8a04','#ea580c','#dc2626'][zi2],zN=['Aceptable','Vigilancia','Intervención prog.','Urgente'][zi2];
+    const lines=[`Fase: ${digHover.phase.toFixed(1)}°`,`Magnitud de Fase: ${Math.round(digHover.mag*MAG_SCALE).toLocaleString('es-CL')}`,zN];
+    const bW=168,bH=54;let bx=hx+14,by2=hy-bH-10;
+    if(bx+bW>W-P.r)bx=hx-bW-14;if(by2<P.t)by2=hy+10;
+    digCtx.fillStyle='rgba(7,12,20,0.95)';digCtx.fillRect(bx,by2,bW,bH);
+    digCtx.strokeStyle='rgba(250,204,21,0.4)';digCtx.lineWidth=1;digCtx.strokeRect(bx,by2,bW,bH);
+    [['#fbbf24','bold 11px'],['#e5e7eb','10px'],[zC,'bold 9px']].forEach(([fc,fnt],i)=>{digCtx.fillStyle=fc;digCtx.font=fnt+' sans-serif';digCtx.textAlign='left';digCtx.fillText(lines[i],bx+8,by2+15+i*14);});
+  }
+
+  digCtx.strokeStyle='rgba(255,255,255,0.20)';digCtx.lineWidth=0.8;
+  digCtx.beginPath();digCtx.moveTo(P.l,P.t);digCtx.lineTo(P.l,P.t+cH+1);digCtx.lineTo(P.l+cW+1,P.t+cH+1);digCtx.stroke();
+  digCtx.fillStyle='rgba(255,255,255,0.40)';digCtx.font='9px sans-serif';digCtx.textAlign='center';
+  [0,90,180,270,360].forEach(a=>digCtx.fillText(a+'°',xp(a),250-10));
+  digCtx.fillStyle='rgba(100,120,180,0.55)';digCtx.font='8px sans-serif';
+  digCtx.fillText('◀ sem.(+)',xp(45),P.t+11);digCtx.fillText('sem.(−) ▶',xp(315),P.t+11);
+
+  digCtx.textAlign='right';digCtx.fillStyle='rgba(255,255,255,0.32)';
+  [0,25,50,75,100].forEach(v=>digCtx.fillText(Math.round(v*MAG_SCALE).toLocaleString('es-CL'),P.l-5,yp(v)+3.5));
+  digCtx.fillStyle='rgba(156,163,175,0.55)';digCtx.font='8.5px sans-serif';digCtx.textAlign='center';
+  digCtx.fillText('Fase relativa (°)',P.l+cW/2,249);
+  digCtx.save();digCtx.translate(11,P.t+cH/2);digCtx.rotate(-Math.PI/2);
+  digCtx.fillStyle='rgba(156,163,175,0.55)';digCtx.font='8.5px sans-serif';digCtx.textAlign='center';
+  digCtx.fillText('Magnitud de Fase',0,0);digCtx.restore();
+
+  const ac=amp<th[0]?'#16a34a':amp<th[1]?'#ca8a04':amp<th[2]?'#ea580c':'#dc2626';
+  digCtx.beginPath();digCtx.setLineDash([6,3]);digCtx.strokeStyle=ac+'99';digCtx.lineWidth=1.2;
+  digCtx.moveTo(P.l,yp(amp));digCtx.lineTo(P.l+cW,yp(amp));digCtx.stroke();digCtx.setLineDash([]);
+  digCtx.fillStyle=ac;digCtx.font='bold 8.5px sans-serif';digCtx.textAlign='right';
+  digCtx.fillText('Amp:'+Math.round(amp*MAG_SCALE).toLocaleString('es-CL'),P.l+cW-3,yp(amp)-4);
+
+  const zL=[['Acep.','#16a34a'],[`V>${Math.round(th[0]*MAG_SCALE)}`,'#ca8a04'],[`I>${Math.round(th[1]*MAG_SCALE)}`,'#ea580c'],[`U>${Math.round(th[2]*MAG_SCALE)}`,'#dc2626']];
+  let lx2=P.l+4;
+  zL.forEach(([lbl,col])=>{digCtx.fillStyle=col+'cc';digCtx.fillRect(lx2,P.t+4,7,7);digCtx.fillStyle='rgba(156,163,175,0.75)';digCtx.font='8px sans-serif';digCtx.textAlign='left';digCtx.fillText(lbl,lx2+9,P.t+11);lx2+=digCtx.measureText(lbl).width+18;});
+  digCtx.fillStyle='rgba(156,163,175,0.5)';digCtx.font='8px sans-serif';digCtx.textAlign='right';
+  digCtx.fillText(`${digPts.length.toLocaleString('es-CL')} pts · 360×200`,P.l+cW,P.t+11);
+}
+
+if(digCv){
+  digCv.addEventListener('mousemove',e=>{
+    if(!digPts.length)return;
+    const rect=digCv.getBoundingClientRect();
+    const mx=(e.clientX-rect.left)*(digCv.width/rect.width);
+    const my=(e.clientY-rect.top)*(digCv.height/rect.height);
+    const P={t:22,r:14,b:32,l:50};
+    const cW=digCv.width-P.l-P.r,cH=250-P.t-P.b;
+    const xp=ph=>P.l+(ph/360)*cW,yp=mg=>P.t+cH*(1-mg/100);
+    let near=null,minD=Infinity;
+    const searchR=(digSize*3+12)**2;
+    digPts.forEach(pt=>{const dx=xp(pt.phase)-mx,dy=yp(pt.mag)-my;const d=dx*dx+dy*dy;if(d<searchR&&d<minD){minD=d;near=pt;}});
+    if(near!==digHover){digHover=near;drawDigPRPD();}
+  });
+  digCv.addEventListener('mouseleave',()=>{if(digHover){digHover=null;drawDigPRPD();}});
+}
+
 const CRIT_DATA=[{label:'No crítico',color:'#6b7280',desc:'La falla del activo no genera consecuencias relevantes para la operación y existe respaldo o redundancia.'},{label:'Bajo',color:'#16a34a',desc:'La falla genera impactos menores y fácilmente gestionables mediante procedimientos operativos normales.'},{label:'Medio',color:'#ca8a04',desc:'La falla provoca afectación parcial de la operación o aumento de costos de mantenimiento y recuperación.'},{label:'Alto',color:'#ea580c',desc:'La falla compromete significativamente la continuidad operacional o la disponibilidad de procesos relevantes.'},{label:'Crítico',color:'#dc2626',desc:'La falla puede provocar pérdida total de servicio, riesgos para la seguridad de las personas, daños mayores a equipos o impactos económicos severos.'}];
 let critIdx=-1;
 function buildCritBtns(){const c=document.getElementById('crit-btns');if(!c)return;CRIT_DATA.forEach((d,i)=>{const btn=document.createElement('button');btn.id='crit-'+i;btn.className='crit-btn';btn.textContent=d.label;btn.onclick=(()=>{const idx=i;return()=>setCrit(idx);})();c.appendChild(btn);});}
-function setCrit(idx){critIdx=idx;CRIT_DATA.forEach((_,i)=>{const b=document.getElementById('crit-'+i);if(!b)return;if(i===idx){b.style.borderColor=CRIT_DATA[idx].color;b.style.color=CRIT_DATA[idx].color;b.style.background=hexToRgba(CRIT_DATA[idx].color,.15);b.style.fontWeight='700';}else{b.style.borderColor='';b.style.color='';b.style.background='';b.style.fontWeight='';}});const descEl=document.getElementById('crit-desc');if(descEl){descEl.textContent=CRIT_DATA[idx].desc;descEl.style.display='block';descEl.style.borderLeft='2px solid '+CRIT_DATA[idx].color;}const printEl=document.getElementById('crit-print');if(printEl)printEl.innerHTML=`<strong>Criticidad del activo:</strong> ${CRIT_DATA[idx].label} — ${CRIT_DATA[idx].desc}`;const cvEl=document.getElementById('icd-crit-val');if(cvEl){cvEl.textContent=CRIT_DATA[idx].label;cvEl.style.color=CRIT_DATA[idx].color;}}
-function hexToRgba(hex,a){const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);return`rgba(${r},${g},${b},${a})`;}
+function setCrit(idx){critIdx=idx;CRIT_DATA.forEach((_,i)=>{const b=document.getElementById('crit-'+i);if(!b)return;if(i===idx){b.style.borderColor=CRIT_DATA[idx].color;b.style.color=CRIT_DATA[idx].color;b.style.background=`rgba(${hexRGB(CRIT_DATA[idx].color)},0.15)`;b.style.fontWeight='700';}else{b.style.borderColor='';b.style.color='';b.style.background='';b.style.fontWeight='';}});const de=document.getElementById('crit-desc');if(de){de.textContent=CRIT_DATA[idx].desc;de.style.display='block';de.style.borderLeft='2px solid '+CRIT_DATA[idx].color;}const pr=document.getElementById('crit-print');if(pr)pr.innerHTML=`<strong>Criticidad:</strong> ${CRIT_DATA[idx].label} — ${CRIT_DATA[idx].desc}`;const cv2=document.getElementById('icd-crit-val');if(cv2){cv2.textContent=CRIT_DATA[idx].label;cv2.style.color=CRIT_DATA[idx].color;}}
+function hexRGB(hex){const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);return`${r},${g},${b}`;}
 buildCritBtns();
+
 const RI_CONFIG={ea:{labels:['Baja','Media','Alta','Excelente'],max:30},cp:{labels:['Ambiguo','Compatible','Característico','Muy característico'],max:20},th:{labels:['Sin referencia','Similar','Incremento','Disminución'],max:10},ev:{labels:['No observada','Posible','Clara'],max:5},ct:{labels:['No observada','Leve','Moderada','Fuerte'],max:5}};
 const RI_SCORE_MAP={ea:[0,10,20,30],cp:[0,10,15,20],th:[0,5,10,3],ev:[0,3,5],ct:[0,2,4,5]};
 const RI_MESSAGES={ea:['Señal débil o intermitente, con dificultad para identificar una fuente definida o distinguirla del ruido de fondo.','Señal detectable y repetitiva, con una posible fuente identificable, aunque persiste cierta incertidumbre en su localización o intensidad.','Fuente acústica claramente identificada y localizada, con señal estable y diferenciable del ruido ambiental.','Fuente acústica inequívoca, perfectamente localizada y con señal consistente, estable y de alta intensidad durante toda la adquisición.'],cp:['Patrón disperso o poco definido, sin características suficientes para asociarlo con un mecanismo específico de descarga parcial.','Patrón que presenta algunas características asociadas a un mecanismo conocido, aunque con elementos que generan incertidumbre.','Patrón claramente compatible con un mecanismo de descarga parcial conocido, con distribución fase-amplitud bien definida.','Patrón altamente representativo y consistente con un mecanismo específico de descarga parcial, con características diagnósticas inequívocas.'],th:['No existen mediciones previas disponibles para comparación.','La actividad observada es comparable a registros históricos previos, sin cambios significativos en comportamiento o severidad.','Se observa un aumento en la actividad respecto a mediciones anteriores, evidenciando una posible evolución del fenómeno.','Se observa una reducción en la actividad respecto a registros anteriores, indicando una posible estabilización o mitigación del fenómeno.'],ev:['No se identifican indicios visuales asociados al fenómeno detectado.','Se observan condiciones que podrían favorecer o estar relacionadas con la actividad detectada (contaminación, humedad, envejecimiento u otras anomalías menores).','Se observan evidencias visibles directamente asociadas al fenómeno, tales como tracking, erosión, carbonización, fisuras o deterioro superficial.'],ct:['No se detectan anomalías térmicas relevantes en la zona asociada al hallazgo.','Se detecta una diferencia térmica menor, con posible relación al fenómeno observado, aunque sin evidencia concluyente.','Existe una anomalía térmica claramente identificable y espacialmente consistente con la ubicación del hallazgo.','Se observa una anomalía térmica significativa y coincidente con la fuente identificada, reforzando la existencia de un proceso físico activo en el activo inspeccionado.']};
@@ -397,21 +766,22 @@ const RI_STATE={ea:{idx:-1,label:'—',score:0},cp:{idx:-1,label:'—',score:0},
 function buildRI(key){const c=document.getElementById('rib-'+key);if(!c)return;RI_CONFIG[key].labels.forEach((lbl,idx)=>{const btn=document.createElement('button');btn.id=`ri-${key}-${idx}`;btn.className='ri-btn';btn.textContent=lbl;btn.onclick=(()=>{const i=idx,l=lbl;return()=>setRI(key,i,l);})();c.appendChild(btn);});}
 function setRI(key,idx,label){const c=document.getElementById('rib-'+key);if(c)c.querySelectorAll('.ri-btn').forEach((b,i)=>b.className='ri-btn'+(i===idx?' active':''));const pe=document.getElementById('rip-'+key);if(pe)pe.textContent=label;const msgEl=document.getElementById('rim-'+key);const msgs=RI_MESSAGES[key];if(msgEl&&msgs&&msgs[idx]!==undefined){msgEl.textContent=msgs[idx];msgEl.style.display='block';}RI_STATE[key]={idx,label,score:RI_SCORE_MAP[key][idx]||0};updateConfidence();}
 Object.keys(RI_CONFIG).forEach(k=>buildRI(k));
+
 function calcConfidence(){return Math.min(100,30+RI_STATE.ea.score+RI_STATE.cp.score+RI_STATE.th.score+RI_STATE.ev.score+RI_STATE.ct.score);}
 function confClass(v){if(v<=40)return{label:'Baja',color:'#dc2626'};if(v<=70)return{label:'Moderada',color:'#ca8a04'};if(v<=85)return{label:'Alta',color:'#2563eb'};return{label:'Muy alta',color:'#16a34a'};}
 function updateConfidence(){const score=calcConfidence();const cls=confClass(score);document.getElementById('icd-num').textContent=score;const clsEl=document.getElementById('icd-cls');clsEl.textContent=cls.label;clsEl.style.color=cls.color;const bar=document.getElementById('icd-bar');bar.style.width=score+'%';bar.style.background=cls.color;drawRadar(score,cls.color);}
-function updateICDSummary(){const s=riskScore();const k=actionKey();const ACTS_c={ok:'#16a34a',watch:'#ca8a04',prog:'#ea580c',urg:'#dc2626',oth:'#6b7280'};const c=ACTS_c[k]||'#6b7280';const rEl=document.getElementById('icd-risk-val');if(rEl){rEl.textContent=s;rEl.style.color=c;}const aEl=document.getElementById('icd-action-lbl');if(aEl){aEl.textContent=LVL[k]||'—';aEl.style.color=c;}}
+function updateICDSummary(){const s=riskScore();const k=actionKey();const AC={ok:'#16a34a',watch:'#ca8a04',prog:'#ea580c',urg:'#dc2626',oth:'#6b7280'};const c=AC[k]||'#6b7280';const rEl=document.getElementById('icd-risk-val');if(rEl){rEl.textContent=s;rEl.style.color=c;}const aEl=document.getElementById('icd-action-lbl');if(aEl){aEl.textContent=LVL[k]||'—';aEl.style.color=c;}}
 function drawRadar(score,clsColor){
   const W=radarCv.width,H=radarCv.height;const rcx=W/2,rcy=H/2+2;const R=W/2-28;radarCx.clearRect(0,0,W,H);
   const keys=['ea','cp','th','ev','ct'];const maxes={ea:30,cp:20,th:10,ev:5,ct:5};const shortLabels=['E. Acúst.','C. PRPD','Tendencia','E. Visual','C. Térm.'];const n=5;const angles=Array.from({length:n},(_,i)=>-Math.PI/2+(2*Math.PI/n)*i);
   radarCx.beginPath();angles.forEach((a,i)=>{const x=rcx+R*Math.cos(a),y=rcy+R*Math.sin(a);i===0?radarCx.moveTo(x,y):radarCx.lineTo(x,y);});radarCx.closePath();radarCx.fillStyle='rgba(0,0,10,0.35)';radarCx.fill();
   [.25,.5,.75,1].forEach(f=>{radarCx.beginPath();angles.forEach((a,i)=>{const x=rcx+R*f*Math.cos(a),y=rcy+R*f*Math.sin(a);i===0?radarCx.moveTo(x,y):radarCx.lineTo(x,y);});radarCx.closePath();radarCx.strokeStyle=f===1?'rgba(255,255,255,0.22)':'rgba(255,255,255,0.09)';radarCx.lineWidth=f===1?1.2:0.7;radarCx.stroke();});
   angles.forEach(a=>{const grd=radarCx.createLinearGradient(rcx,rcy,rcx+R*Math.cos(a),rcy+R*Math.sin(a));grd.addColorStop(0,'rgba(255,255,255,0.03)');grd.addColorStop(1,'rgba(255,255,255,0.22)');radarCx.beginPath();radarCx.moveTo(rcx,rcy);radarCx.lineTo(rcx+R*Math.cos(a),rcy+R*Math.sin(a));radarCx.strokeStyle=grd;radarCx.lineWidth=1;radarCx.stroke();});
-  const labelColor=isPrinting?'#000':'rgba(209,213,219,0.9)';radarCx.font='bold 9px sans-serif';radarCx.textAlign='center';angles.forEach((a,i)=>{const lx=rcx+(R+17)*Math.cos(a),ly=rcy+(R+17)*Math.sin(a)+3.5;radarCx.fillStyle=labelColor;radarCx.fillText(shortLabels[i],lx,ly);});
-  const [r,g,b]=clsColor==='#dc2626'?[220,38,38]:clsColor==='#ca8a04'?[202,138,4]:clsColor==='#2563eb'?[37,99,235]:[22,163,74];
+  const lC=isPrinting?'#000':'rgba(209,213,219,0.9)';radarCx.font='bold 9px sans-serif';radarCx.textAlign='center';angles.forEach((a,i)=>{const lx2=rcx+(R+17)*Math.cos(a),ly2=rcy+(R+17)*Math.sin(a)+3.5;radarCx.fillStyle=lC;radarCx.fillText(shortLabels[i],lx2,ly2);});
+  const[r,g,b]=clsColor==='#dc2626'?[220,38,38]:clsColor==='#ca8a04'?[202,138,4]:clsColor==='#2563eb'?[37,99,235]:[22,163,74];
   radarCx.beginPath();angles.forEach((a,i)=>{const x=rcx+R*Math.cos(a),y=rcy+R*Math.sin(a);i===0?radarCx.moveTo(x,y):radarCx.lineTo(x,y);});radarCx.closePath();radarCx.strokeStyle=`rgba(${r},${g},${b},0.22)`;radarCx.lineWidth=1;radarCx.setLineDash([4,4]);radarCx.stroke();radarCx.setLineDash([]);
   radarCx.beginPath();keys.forEach((k,i)=>{const norm=maxes[k]>0?RI_STATE[k].score/maxes[k]:0;const x=rcx+R*norm*Math.cos(angles[i]),y=rcy+R*norm*Math.sin(angles[i]);i===0?radarCx.moveTo(x,y):radarCx.lineTo(x,y);});radarCx.closePath();
-  const grdFill=radarCx.createRadialGradient(rcx,rcy,0,rcx,rcy,R);grdFill.addColorStop(0,`rgba(${r},${g},${b},0.55)`);grdFill.addColorStop(.6,`rgba(${r},${g},${b},0.3)`);grdFill.addColorStop(1,`rgba(${r},${g},${b},0.08)`);radarCx.fillStyle=grdFill;radarCx.fill();
+  const gF=radarCx.createRadialGradient(rcx,rcy,0,rcx,rcy,R);gF.addColorStop(0,`rgba(${r},${g},${b},0.55)`);gF.addColorStop(.6,`rgba(${r},${g},${b},0.3)`);gF.addColorStop(1,`rgba(${r},${g},${b},0.08)`);radarCx.fillStyle=gF;radarCx.fill();
   radarCx.strokeStyle=`rgba(${r},${g},${b},0.35)`;radarCx.lineWidth=6;radarCx.stroke();radarCx.strokeStyle=clsColor;radarCx.lineWidth=1.8;radarCx.stroke();
   radarCx.beginPath();radarCx.arc(rcx,rcy,3,0,Math.PI*2);radarCx.fillStyle=`rgba(${r},${g},${b},0.5)`;radarCx.fill();
   keys.forEach((k,i)=>{const norm=maxes[k]>0?RI_STATE[k].score/maxes[k]:0;const x=rcx+R*norm*Math.cos(angles[i]),y=rcy+R*norm*Math.sin(angles[i]);radarCx.beginPath();radarCx.arc(x,y,7,0,Math.PI*2);radarCx.fillStyle=`rgba(${r},${g},${b},0.2)`;radarCx.fill();radarCx.beginPath();radarCx.arc(x,y,3.8,0,Math.PI*2);radarCx.fillStyle=clsColor;radarCx.fill();radarCx.strokeStyle='rgba(255,255,255,0.6)';radarCx.lineWidth=0.8;radarCx.stroke();});
@@ -422,22 +792,72 @@ function clearConfImg(key){const img=document.getElementById('conf-img-'+key);if
 function syncConfObs(key){const ta=document.getElementById('conf-obs-'+key);const pr=document.getElementById('conf-obs-print-'+key);if(ta&&pr)pr.textContent=ta.value;}
 function syncVis(k){const el=document.getElementById('p-'+k);if(el)el.textContent=document.getElementById('v-'+k).value;}
 function syncObs(){document.getElementById('obs-print').textContent=document.getElementById('obs-ta').value;}
-function exportPDF(){syncObs();VIS_IDS.forEach(k=>syncVis(k));syncConfObs('ev');syncConfObs('ct');if(pat==='D'){const[a1,a2]=getDAngles();const pr=document.getElementById('pat-d-print');if(pr){pr.textContent=`Fases de descarga: Fase 1 = ${a1}°, Fase 2 = ${a2}°`;pr.style.display='block';}}document.getElementById('pdf-file-row').classList.add('visible');setTimeout(()=>window.print(),80);}
+function exportPDF(){syncObs();VIS_IDS.forEach(k=>syncVis(k));syncConfObs('ev');syncConfObs('ct');if(pat==='D'){const[a1,a2]=getDAngles();const pr=document.getElementById('pat-d-print');if(pr){pr.textContent=`Fases: Fase 1=${a1}°, Fase 2=${a2}°`;pr.style.display='block';}}document.getElementById('pdf-file-row').classList.add('visible');setTimeout(()=>window.print(),80);}
+function getDAngles(){return[+(document.getElementById('d-angle1')?.value??90),+(document.getElementById('d-angle2')?.value??270)];}
+
 function applyVisAuto(){if(!pdfFullPage)return;const s=PDF_SCALE,cL=Math.floor(VIS_PT.x1*s),cT=Math.floor(VIS_PT.y1*s),cR=Math.ceil(VIS_PT.x2*s),cB=Math.ceil(VIS_PT.y2*s);const cWc=cR-cL,cHc=cB-cT,tW=Math.round(cWc*2/3),tH=Math.round(cHc*2/3);const tmp=document.createElement('canvas');tmp.width=tW;tmp.height=tH;tmp.getContext('2d').drawImage(pdfFullPage,cL,cT,cWc,cHc,0,0,tW,tH);document.getElementById('vis-img').src=tmp.toDataURL('image/png');document.getElementById('vis-empty').style.display='none';document.getElementById('vis-container').style.display='grid';}
-function applyCrop(){if(!pdfFullPage)return;const s=PDF_SCALE,cL=Math.floor(PRPD_PT.x1*s),cT=Math.floor(PRPD_PT.y1*s),cR=Math.ceil(PRPD_PT.x2*s),cB=Math.ceil(PRPD_PT.y2*s);const cWc=Math.max(1,cR-cL),cHc=Math.max(1,cB-cT);pdfChartCanvas=document.createElement('canvas');pdfChartCanvas.width=cWc;pdfChartCanvas.height=cHc;pdfChartCanvas.getContext('2d').drawImage(pdfFullPage,cL,cT,cWc,cHc,0,0,cWc,cHc);draw();}
-async function loadPDF(input){const file=input.files[0];if(!file)return;pdfFileName=file.name;document.getElementById('pdf-file-name').textContent=pdfFileName;setUpState('proc',file.name.length>36?file.name.slice(0,34)+'…':file.name,'Procesando PDF…');try{const buf=await file.arrayBuffer();const pdf=await pdfjsLib.getDocument({data:buf}).promise;const metaTc=await(await pdf.getPage(Math.min(3,pdf.numPages))).getTextContent();const rawText=metaTc.items.map(i=>i.str).join(' ');const detectedLabel=parseDP(rawText);parsePulseCount(rawText);const pg=await pdf.getPage(Math.min(2,pdf.numPages));const vp=pg.getViewport({scale:PDF_SCALE});pdfFullPage=document.createElement('canvas');pdfFullPage.width=vp.width;pdfFullPage.height=vp.height;await pg.render({canvasContext:pdfFullPage.getContext('2d'),viewport:vp}).promise;applyCrop();applyVisAuto();setUpState('ok',file.name.length>36?file.name.slice(0,34)+'…':file.name,'Clasificación DP + pulsos: pág. 3 · Gráfico + imagen: pág. 2');document.getElementById('clearbtn').style.display='block';const colMap={int:'danger',ext:'warning',sup:'info',oth:'secondary'};const db=document.getElementById('det-badge');const col=colMap[dp]||'secondary';db.style.background=`var(--color-background-${col})`;db.style.color=`var(--color-text-${col})`;db.textContent=`Tipo DP detectado automáticamente: ${detectedLabel}`;document.getElementById('det-row').style.display='block';upd();}catch(e){setUpState('err','Error al leer PDF',e.message||'Verifique que sea un reporte válido Fluke II915');}}
+function applyCrop(){if(!pdfFullPage)return;const s=PDF_SCALE,cL=Math.floor(PRPD_PT_OVERLAY.x1*s),cT=Math.floor(PRPD_PT_OVERLAY.y1*s),cR=Math.ceil(PRPD_PT_OVERLAY.x2*s),cB=Math.ceil(PRPD_PT_OVERLAY.y2*s);const cWc=Math.max(1,cR-cL),cHc=Math.max(1,cB-cT);pdfChartCanvas=document.createElement('canvas');pdfChartCanvas.width=cWc;pdfChartCanvas.height=cHc;pdfChartCanvas.getContext('2d').drawImage(pdfFullPage,cL,cT,cWc,cHc,0,0,cWc,cHc);draw();}
+
+async function loadPDF(input){
+  const file=input.files[0];if(!file)return;
+  pdfFileName=file.name;document.getElementById('pdf-file-name').textContent=pdfFileName;
+  setUpState('proc',file.name.length>36?file.name.slice(0,34)+'…':file.name,'Procesando PDF…');
+  try{
+    const buf=await file.arrayBuffer();const pdf=await pdfjsLib.getDocument({data:buf}).promise;
+    const metaTc=await(await pdf.getPage(Math.min(3,pdf.numPages))).getTextContent();
+    const rawText=metaTc.items.map(i=>i.str).join(' ');
+    const detectedLabel=parseDP(rawText);parsePulseCount(rawText);
+    const pg=await pdf.getPage(Math.min(2,pdf.numPages));
+    const vp=pg.getViewport({scale:PDF_SCALE});
+    pdfFullPage=document.createElement('canvas');pdfFullPage.width=vp.width;pdfFullPage.height=vp.height;
+    await pg.render({canvasContext:pdfFullPage.getContext('2d'),viewport:vp}).promise;
+    applyCrop();applyVisAuto();
+    digitizePRPD(pg);
+    setUpState('ok',file.name.length>36?file.name.slice(0,34)+'…':file.name,'');
+    document.getElementById('clearbtn').style.display='block';
+    const colMap={int:'danger',ext:'warning',sup:'info',oth:'secondary'};
+    const db=document.getElementById('det-badge');const col=colMap[dp]||'secondary';
+    db.style.background=`var(--color-background-${col})`;db.style.color=`var(--color-text-${col})`;
+    db.textContent=`Tipo DP detectado automáticamente: ${detectedLabel}`;
+    document.getElementById('det-row').style.display='block';upd();
+  }catch(e){setUpState('err','Error al leer PDF',e.message||'Verifique que sea un reporte válido Fluke II915');}
+}
 function parsePulseCount(text){const m=text.match(/Pulse\s+Count\s+Per\s+Minute\s+([\d,\.]+)/i);const pv=document.getElementById('pulse-val');if(m){const raw=m[1].replace(/[,\.]/g,'');const num=parseInt(raw,10);pv.textContent=isNaN(num)?m[1]:num.toLocaleString('es-CL');}else pv.textContent='—';}
 function parseDP(text){const re={int:/Internal\s+(\d+(?:\.\d+)?)\s*%/i,ext:/External\s+(\d+(?:\.\d+)?)\s*%/i,sup:/Tracking\s+(\d+(?:\.\d+)?)\s*%/i,oth:/Other\s+(\d+(?:\.\d+)?)\s*%/i};const pcts={int:0,ext:0,sup:0,oth:0};Object.entries(re).forEach(([k,r])=>{const m=text.match(r);if(m)pcts[k]=parseFloat(m[1]);});['int','ext','sup','oth'].forEach(k=>{const el=document.getElementById('pct-'+k);if(el)el.textContent=pcts[k]>0?pcts[k].toFixed(0)+'%':'0%';});const tagM=text.match(/Discharge\s+Type\s+Tag\s+(\w+)/i);if(tagM){const t=tagM[1].toLowerCase();if(t==='tracking'){setDP('sup');return'Superficial (Tracking)';}if(t==='external'){setDP('ext');return'Externa (External)';}if(t==='internal'){setDP('int');return'Interna (Internal)';}if(t==='other'){setDP('oth');return'Otro (Other)';}}const sorted=Object.entries(pcts).sort((a,b)=>b[1]-a[1]);if(sorted[0][1]>0){setDP(sorted[0][0]);const n={int:'Interna (Internal)',ext:'Externa (External)',sup:'Superficial (Tracking)',oth:'Otro (Other)'};return n[sorted[0][0]]+` — ${sorted[0][1].toFixed(0)}%`;}return'No determinado';}
-function clearPDF(){pdfChartCanvas=null;pdfFullPage=null;pdfFileName='';document.getElementById('pdfInput').value='';document.getElementById('pdf-file-name').textContent='';document.getElementById('pdf-file-row').classList.remove('visible');document.getElementById('vis-container').style.display='none';document.getElementById('vis-empty').style.display='flex';document.getElementById('det-row').style.display='none';document.getElementById('clearbtn').style.display='none';document.getElementById('pulse-val').textContent='—';['int','ext','sup','oth'].forEach(k=>{const el=document.getElementById('pct-'+k);if(el)el.textContent='';});VIS_IDS.forEach(k=>{const inp=document.getElementById('v-'+k);if(inp)inp.value='';const prt=document.getElementById('p-'+k);if(prt)prt.textContent='';});setUpState('up','Adjuntar reporte PDF','Tipo DP + conteo de pulsos (pág. 3) · Gráfico PRPD + imagen visual (pág. 2)');upd();}
+function clearPDF(){pdfChartCanvas=null;pdfFullPage=null;pdfFileName='';digPts=[];digHover=null;document.getElementById('pdfInput').value='';document.getElementById('pdf-file-name').textContent='';document.getElementById('pdf-file-row').classList.remove('visible');document.getElementById('vis-container').style.display='none';document.getElementById('vis-empty').style.display='flex';document.getElementById('det-row').style.display='none';document.getElementById('clearbtn').style.display='none';document.getElementById('pulse-val').textContent='—';document.getElementById('dig-pnl').style.display='none';['int','ext','sup','oth'].forEach(k=>{const el=document.getElementById('pct-'+k);if(el)el.textContent='';});VIS_IDS.forEach(k=>{const inp=document.getElementById('v-'+k);if(inp)inp.value='';const prt=document.getElementById('p-'+k);if(prt)prt.textContent='';});setUpState('up','Adjuntar reporte PDF','Tipo DP + conteo de pulsos (pág. 3) · Gráfico PRPD + imagen visual (pág. 2)');upd();}
 function setUpState(state,title,sub){const paths={up:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>',ok:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>',err:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>',proc:'<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>'};const bg={up:'#1d4ed8',ok:'#065f46',err:'#991b1b',proc:'#92400e'};const ic={up:'#93c5fd',ok:'#6ee7b7',err:'#fca5a5',proc:'#fcd34d'};document.getElementById('upicon').style.background=bg[state]||bg.up;const svg=document.getElementById('upsvg');svg.innerHTML=paths[state]||paths.up;svg.style.color=ic[state]||ic.up;document.getElementById('upttl').textContent=title;document.getElementById('upsub').textContent=sub;}
+
 function actionKey(){if(dp==='oth')return'oth';const th=TH[dp];if(amp<th[0])return'ok';if(amp<th[1])return'watch';if(amp<th[2])return'prog';return'urg';}
 function riskScore(){const th=TH[dp]||TH.sup;const breaks=[[0,0],[th[0],21.25],[th[1],42.5],[th[2],63.75],[100,85]];let a=0;for(let i=1;i<breaks.length;i++){const[x0,y0]=breaks[i-1],[x1,y1]=breaks[i];if(amp<=x1){a=y0+(amp-x0)/(x1-x0)*(y1-y0);break;}}return Math.min(100,Math.round(a+Math.abs(asym)/100*8+(dens-1)/3*7));}
 function updateBarGradient(){const th=TH[dp]||TH.sup,t1=th[0],t2=th[1],t3=th[2],tw=7;document.getElementById('rbo').style.background=`linear-gradient(90deg,#16a34a 0%,#16a34a ${Math.max(0,t1-tw)}%,#ca8a04 ${t1+tw}%,#ca8a04 ${Math.max(0,t2-tw)}%,#ea580c ${t2+tw}%,#ea580c ${Math.max(0,t3-tw)}%,#dc2626 ${t3+tw}%,#dc2626 100%)`;}
 function rng(seed){let s=seed>>>0;return()=>{s=Math.imul(1664525,s)+1013904223>>>0;return s/4294967296;};}
-function mkPulses(){const r=rng(79+pat.charCodeAt(0)*11+dens*37);const n=DC[dens-1];const as=asym/100;const res=[];for(let i=0;i<n;i++){let ph,a;switch(pat){case'A':ph=r()*360;a=amp*(0.12+r()*0.62);break;case'B':{const h=r()>.5,c=h?90:270;ph=c+(r()-.5)*40;const f=h?(1-as*0.55):(1+as*0.55);a=Math.min(100,amp*(0.42+r()*0.58)*Math.max(0.05,f));break;}case'C':{const pL=0.5-as*0.46;const left=r()<Math.max(0.04,Math.min(0.96,pL));ph=left?(50+r()*76):(230+r()*76);const f=left?(1-as*0.60):(1+as*0.60);a=Math.min(100,amp*(0.36+r()*0.64)*Math.max(0.05,f));break;}case'D':{const[dA1,dA2]=getDAngles();const selAngle=i%2===0?dA1:dA2;ph=selAngle+(r()-.5)*44;const normAngle=((selAngle%360)+360)%360;const isPosSemi=normAngle>=0&&normAngle<=180;const fAsym=isPosSemi?(1-as*0.55):(1+as*0.55);a=Math.min(100,amp*(0.42+r()*0.58)*Math.max(0.05,fAsym));break;}}if(ph<0)ph+=360;if(ph>360)ph-=360;res.push({ph,a:Math.max(0,a)});}return res;}
-function draw(){const W=cv.offsetWidth||500;cv.width=W;cv.height=196;const P={t:16,r:10,b:26,l:36};const cW=W-P.l-P.r,cH=196-P.t-P.b;const xp=a=>P.l+(a/360)*cW;const yp=v=>P.t+cH*(1-v/100);const th=TH[dp]||TH.sup;cx.clearRect(0,0,W,196);[[0,th[0],'rgba(22,163,74,0.14)'],[th[0],th[1],'rgba(202,138,4,0.14)'],[th[1],th[2],'rgba(234,88,12,0.14)'],[th[2],100,'rgba(220,38,38,0.16)']].forEach(([f,t,col])=>{cx.fillStyle=col;cx.fillRect(P.l,yp(t),cW,yp(f)-yp(t));});cx.beginPath();cx.strokeStyle='rgba(100,100,180,0.18)';cx.lineWidth=1.5;for(let x=0;x<=cW;x++){const v=50+34*Math.sin(x/cW*Math.PI*2);x===0?cx.moveTo(P.l,yp(v)):cx.lineTo(P.l+x,yp(v));}cx.stroke();cx.strokeStyle='rgba(255,255,255,0.055)';cx.lineWidth=0.5;[90,180,270].forEach(a=>{cx.beginPath();cx.moveTo(xp(a),P.t);cx.lineTo(xp(a),P.t+cH);cx.stroke();});const tc2=['#16a34a','#ca8a04','#ea580c'];th.forEach((t,i)=>{cx.beginPath();cx.setLineDash([3,3]);cx.strokeStyle=tc2[i]+'88';cx.lineWidth=.8;cx.moveTo(P.l,yp(t));cx.lineTo(P.l+cW,yp(t));cx.stroke();cx.setLineDash([]);cx.fillStyle=tc2[i];cx.font='9px sans-serif';cx.textAlign='right';cx.fillText(t+'%',P.l-3,yp(t)+3.5);});[['Aceptable',(yp(0)+yp(th[0]))/2,'#16a34a'],['Vigilancia',(yp(th[0])+yp(th[1]))/2,'#ca8a04'],['Prog.',(yp(th[1])+yp(th[2]))/2,'#ea580c'],['Urgente',(yp(th[2])+yp(100))/2,'#dc2626']].forEach(([lbl,y,col])=>{if(y>P.t+4&&y<P.t+cH-4){cx.fillStyle=col+'cc';cx.font='9px sans-serif';cx.textAlign='right';cx.fillText(lbl,P.l+cW-3,y+3.5);}});if(pat==='D'){const[dA1,dA2]=getDAngles();[dA1,dA2].forEach(ang=>{const x=xp(ang);cx.beginPath();cx.setLineDash([2,4]);cx.strokeStyle='rgba(250,204,21,0.3)';cx.lineWidth=1;cx.moveTo(x,P.t);cx.lineTo(x,P.t+cH);cx.stroke();cx.setLineDash([]);cx.fillStyle='rgba(250,204,21,0.55)';cx.font='bold 9px sans-serif';cx.textAlign='center';cx.fillText(ang+'°',x,P.t+cH+14);});}mkPulses().forEach(({ph,a})=>{const col=a<th[0]?'#16a34a':a<th[1]?'#ca8a04':a<th[2]?'#ea580c':'#dc2626';const x=xp(ph),bY=yp(0),tY=yp(a);cx.fillStyle=col+'b0';cx.fillRect(x-1.4,tY,2.8,bY-tY);cx.beginPath();cx.arc(x,tY,1.4,0,Math.PI*2);cx.fillStyle=col;cx.fill();});if(pdfChartCanvas&&overlayOpacity>0){cx.save();cx.globalAlpha=overlayOpacity/100;cx.drawImage(pdfChartCanvas,P.l,P.t,cW,cH);cx.restore();}const ac=amp<th[0]?'#16a34a':amp<th[1]?'#ca8a04':amp<th[2]?'#ea580c':'#dc2626';cx.beginPath();cx.setLineDash([5,3]);cx.strokeStyle=ac;cx.lineWidth=1.8;cx.moveTo(P.l,yp(amp));cx.lineTo(P.l+cW,yp(amp));cx.stroke();cx.setLineDash([]);cx.fillStyle=ac;cx.font='bold 9px sans-serif';cx.textAlign='left';cx.fillText('▶ '+Math.round(amp)+'%',P.l+5,yp(amp)-5);cx.strokeStyle='rgba(255,255,255,0.18)';cx.lineWidth=.8;cx.beginPath();cx.moveTo(P.l,P.t);cx.lineTo(P.l,P.t+cH+1);cx.lineTo(P.l+cW+1,P.t+cH+1);cx.stroke();cx.fillStyle='rgba(255,255,255,0.38)';cx.font='10px sans-serif';cx.textAlign='center';[0,90,180,270,360].forEach(a=>cx.fillText(a+'°',xp(a),196-5));cx.fillStyle='rgba(255,255,255,0.38)';cx.font='9px sans-serif';cx.textAlign='center';cx.fillText('semiciclo (+)',xp(90),P.t+9);cx.fillText('semiciclo (−)',xp(270),P.t+9);cx.fillStyle='rgba(255,255,255,0.38)';cx.font='9px sans-serif';cx.textAlign='left';cx.fillText('Amplitud (%)',P.l+2,P.t+8);}
-const NORMS={ok:{int:'<strong>Ref. normativa:</strong> IEC 60270:2000 §6 — DP interna dentro del umbral aceptable. Monitoreo continuo conforme a IEEE Std 400-2012 e IEC 62478:2016.',ext:'<strong>Ref. normativa:</strong> IEC 60815-1:2008 — DP externa dentro de rangos aceptables. Monitoreo periódico recomendado por CIGRÉ TB 654.',sup:'<strong>Ref. normativa:</strong> IEC 60270:2000 §5 — Descarga superficial en niveles aceptables. Verificación periódica conforme a IEC 62478:2016 e IEEE Std 1434-2014.',oth:'<strong>Ref. normativa:</strong> IEC 60270:2000 §5 — Descarga de tipo no identificado. Continuar monitoreo estándar y solicitar análisis complementario.'},watch:{int:'<strong>Ref. normativa:</strong> IEC 60270:2000 §8 y IEEE Std 400.3-2006 — DP interna en crecimiento. CIGRÉ TB 841 (2021): segunda medición confirmatoria en ≤ 30 días.',ext:'<strong>Ref. normativa:</strong> IEC 60815-1/2/3:2008 — Corona creciente. CIGRÉ TB 361: intensificar frecuencia de inspección.',sup:'<strong>Ref. normativa:</strong> IEC 60270:2000 e IEC 62478:2016 — DP superficial en vigilancia. IEEE Std 48-2009: seguimiento mensual.',oth:'<strong>Ref. normativa:</strong> IEC 60270:2000 §5 — Descarga no identificada. Mantener monitoreo y solicitar análisis especializado.'},prog:{int:'<strong>Ref. normativa:</strong> IEC 60270:2000 §9, IEEE Std 400-2012 §9 y CIGRÉ TB 841 (2021) — DP interna significativa. Complementar con termografía y planificar sustitución.',ext:'<strong>Ref. normativa:</strong> IEC 60815-3:2008 y CIGRÉ TB 654 — DP externa significativa. Limpieza conforme a IEC 60305 y CIGRÉ TB 481.',sup:'<strong>Ref. normativa:</strong> IEEE Std 48-2009 §8 e IEC 60270:2000 — DP superficial significativa. Verificar integridad de interfaz.',oth:'<strong>Ref. normativa:</strong> IEC 60270:2000 §5 — Descarga no identificada. Mantener monitoreo y solicitar análisis especializado.'},urg:{int:'<strong>Ref. normativa:</strong> IEC 60270:2000 §10, IEEE Std 400-2012 §10 y CIGRÉ TB 841 (2021) — DP interna crítica. Reemplazo obligatorio y validación PRPD conforme IEC 60840/62067.',ext:'<strong>Ref. normativa:</strong> IEC 60071-1:2019 y CIGRÉ TB 654 — DP externa crítica. Descargo inmediato. Reemplazo según IEC 60305 e IEC 60433.',sup:'<strong>Ref. normativa:</strong> IEEE Std 48-2009 §9 e IEC 62067:2011 — DP superficial crítica. Reemplazo completo y validación PRPD.',oth:'<strong>Ref. normativa:</strong> IEC 60270:2000 §5 — Descarga no identificada. Mantener monitoreo y solicitar análisis especializado.'},oth:{int:'<strong>Ref. normativa:</strong> IEC 60270:2000 §5 — Descarga no identificada.',ext:'<strong>Ref. normativa:</strong> IEC 60270:2000 §5 — Descarga no identificada.',sup:'<strong>Ref. normativa:</strong> IEC 60270:2000 §5 — Descarga no identificada.',oth:'<strong>Ref. normativa:</strong> IEC 60270:2000 §5 — Descarga no identificada.'}};
-const ACTS={ok:{c:'#16a34a',bg:'rgba(22,163,74,0.09)',t:'Sin intervención requerida — continuar monitoreo en ciclo normal',o:{int:['Amplitud de DP interna dentro del rango aceptable','Programar próxima medición según ciclo estándar','Mantener registro histórico'],ext:['DP externa en niveles residuales sin riesgo inmediato','Inspección visual en próxima ronda de terreno','Sin acción correctiva requerida'],sup:['DP superficial en nivel aceptable','Mantener ciclo de monitoreo estándar','Sin acción requerida'],oth:['Mantener ciclo de monitoreo estándar','Solicitar análisis complementario','Documentar medición']}},watch:{c:'#ca8a04',bg:'rgba(202,138,4,0.09)',t:'Vigilancia intensiva — aumentar frecuencia de inspección a ciclo mensual',o:{int:['Amplitud supera umbral de atención — documentar evolución','Segunda medición de confirmación en máximo 30 días','Si patrón PRPD escala → intervención programada'],ext:['DP externa creciente — verificar contaminación o daño','Inspección visual detallada en próxima visita','Evaluar limpieza en próxima ventana'],sup:['DP superficial en crecimiento — revisar terminaciones','Verificar humedad en juntas y estado de sellado','Medir resistencia si la tendencia crece'],oth:['Mantener ciclo de monitoreo estándar','Solicitar análisis complementario','Documentar medición']}},prog:{c:'#ea580c',bg:'rgba(234,88,12,0.09)',t:'Intervención programada — incluir en próxima ventana de mantenimiento',o:{int:['DP interna significativa — deterioro progresivo del aislamiento','Complementar con termografía infrarroja','Planificar sustitución en próxima ventana'],ext:['DP externa significativa — posible contaminación severa','Programar limpieza según protocolo','Evaluar compuesto hidrofóbico'],sup:['DP superficial significativa — posible instalación deficiente','Revisar y re-instalar terminaciones','Verificar torques y sellado'],oth:['Mantener ciclo de monitoreo estándar','Solicitar análisis complementario','Documentar medición']}},urg:{c:'#dc2626',bg:'rgba(220,38,38,0.09)',t:'INTERVENCIÓN URGENTE — notificar a operaciones en ≤ 24 horas',o:{int:['DP interna crítica — riesgo de falla inminente','Notificar centro de control y coordinar descargo','Reemplazar componente — no reconectar sin PRPD de validación'],ext:['DP externa crítica — alto riesgo de flashover','Notificar operaciones para descargo prioritario','Reemplazar aisladores dañados'],sup:['DP superficial crítica — falla grave en terminal','Reemplazar la(s) terminación(es)','Validación PRPD obligatoria antes del retorno'],oth:['Mantener ciclo de monitoreo estándar','Solicitar análisis complementario','Documentar medición']}},oth:{c:'#6b7280',bg:'rgba(107,114,128,0.09)',t:'Descarga no identificada — mantener ciclo de monitoreo estándar',o:{int:['Mantener ciclo de monitoreo estándar','Solicitar análisis complementario','Documentar medición'],ext:['Mantener ciclo de monitoreo estándar','Solicitar análisis complementario','Documentar medición'],sup:['Mantener ciclo de monitoreo estándar','Solicitar análisis complementario','Documentar medición'],oth:['Mantener ciclo de monitoreo estándar','Solicitar análisis complementario','Documentar medición']}}};
+function mkPulses(){const r=rng(79+pat.charCodeAt(0)*11+dens*37);const n=DC[dens-1];const as=asym/100;const res=[];for(let i=0;i<n;i++){let ph,a;switch(pat){case'A':ph=r()*360;a=amp*(0.12+r()*0.62);break;case'B':{const h=r()>.5,c=h?90:270;ph=c+(r()-.5)*40;const f=h?(1-as*0.55):(1+as*0.55);a=Math.min(100,amp*(0.42+r()*0.58)*Math.max(0.05,f));break;}case'C':{const pL=0.5-as*0.46;const left=r()<Math.max(0.04,Math.min(0.96,pL));ph=left?(50+r()*76):(230+r()*76);const f=left?(1-as*0.60):(1+as*0.60);a=Math.min(100,amp*(0.36+r()*0.64)*Math.max(0.05,f));break;}case'D':{const[dA1,dA2]=getDAngles();const selA=i%2===0?dA1:dA2;ph=selA+(r()-.5)*44;const na=((selA%360)+360)%360;const fA=na<=180?(1-as*0.55):(1+as*0.55);a=Math.min(100,amp*(0.42+r()*0.58)*Math.max(0.05,fA));break;}}if(ph<0)ph+=360;if(ph>360)ph-=360;res.push({ph,a:Math.max(0,a)});}return res;}
+
+function draw(){
+  const W=cv.offsetWidth||500;cv.width=W;cv.height=196;
+  const P={t:16,r:10,b:26,l:36};const cW=W-P.l-P.r,cH=196-P.t-P.b;
+  const xp=a=>P.l+(a/360)*cW;const yp=v=>P.t+cH*(1-v/100);const th=TH[dp]||TH.sup;
+  cx.clearRect(0,0,W,196);
+  [[0,th[0],'rgba(22,163,74,0.14)'],[th[0],th[1],'rgba(202,138,4,0.14)'],[th[1],th[2],'rgba(234,88,12,0.14)'],[th[2],100,'rgba(220,38,38,0.16)']].forEach(([f,t,col])=>{cx.fillStyle=col;cx.fillRect(P.l,yp(t),cW,yp(f)-yp(t));});
+  cx.beginPath();cx.strokeStyle='rgba(100,100,180,0.18)';cx.lineWidth=1.5;for(let x=0;x<=cW;x++){const v=50+34*Math.sin(x/cW*Math.PI*2);x===0?cx.moveTo(P.l,yp(v)):cx.lineTo(P.l+x,yp(v));}cx.stroke();
+  cx.strokeStyle='rgba(255,255,255,0.055)';cx.lineWidth=0.5;[90,180,270].forEach(a=>{cx.beginPath();cx.moveTo(xp(a),P.t);cx.lineTo(xp(a),P.t+cH);cx.stroke();});
+  const tc2=['#16a34a','#ca8a04','#ea580c'];
+  th.forEach((t,i)=>{cx.beginPath();cx.setLineDash([3,3]);cx.strokeStyle=tc2[i]+'88';cx.lineWidth=.8;cx.moveTo(P.l,yp(t));cx.lineTo(P.l+cW,yp(t));cx.stroke();cx.setLineDash([]);cx.fillStyle=tc2[i];cx.font='9px sans-serif';cx.textAlign='right';cx.fillText(t+'%',P.l-3,yp(t)+3.5);});
+  [['Acep.',(yp(0)+yp(th[0]))/2,'#16a34a'],['Vigil.',(yp(th[0])+yp(th[1]))/2,'#ca8a04'],['Prog.',(yp(th[1])+yp(th[2]))/2,'#ea580c'],['Urg.',(yp(th[2])+yp(100))/2,'#dc2626']].forEach(([lbl,y,col])=>{if(y>P.t+4&&y<P.t+cH-4){cx.fillStyle=col+'cc';cx.font='9px sans-serif';cx.textAlign='right';cx.fillText(lbl,P.l+cW-3,y+3.5);}});
+  if(pat==='D'){const[dA1,dA2]=getDAngles();[dA1,dA2].forEach(ang=>{const x=xp(ang);cx.beginPath();cx.setLineDash([2,4]);cx.strokeStyle='rgba(250,204,21,0.3)';cx.lineWidth=1;cx.moveTo(x,P.t);cx.lineTo(x,P.t+cH);cx.stroke();cx.setLineDash([]);cx.fillStyle='rgba(250,204,21,0.55)';cx.font='bold 9px sans-serif';cx.textAlign='center';cx.fillText(ang+'°',x,P.t+cH+14);});}
+  mkPulses().forEach(({ph,a})=>{const col=a<th[0]?'#16a34a':a<th[1]?'#ca8a04':a<th[2]?'#ea580c':'#dc2626';const x=xp(ph),bY=yp(0),tY=yp(a);cx.fillStyle=col+'b0';cx.fillRect(x-1.4,tY,2.8,bY-tY);cx.beginPath();cx.arc(x,tY,1.4,0,Math.PI*2);cx.fillStyle=col;cx.fill();});
+  if(pdfChartCanvas&&overlayOpacity>0){cx.save();cx.globalAlpha=overlayOpacity/100;cx.drawImage(pdfChartCanvas,P.l,P.t,cW,cH);cx.restore();}
+  const ac=amp<th[0]?'#16a34a':amp<th[1]?'#ca8a04':amp<th[2]?'#ea580c':'#dc2626';
+  cx.beginPath();cx.setLineDash([5,3]);cx.strokeStyle=ac;cx.lineWidth=1.8;cx.moveTo(P.l,yp(amp));cx.lineTo(P.l+cW,yp(amp));cx.stroke();cx.setLineDash([]);cx.fillStyle=ac;cx.font='bold 9px sans-serif';cx.textAlign='left';cx.fillText('▶ '+Math.round(amp)+'%',P.l+5,yp(amp)-5);
+  cx.strokeStyle='rgba(255,255,255,0.18)';cx.lineWidth=.8;cx.beginPath();cx.moveTo(P.l,P.t);cx.lineTo(P.l,P.t+cH+1);cx.lineTo(P.l+cW+1,P.t+cH+1);cx.stroke();
+  cx.fillStyle='rgba(255,255,255,0.38)';cx.font='10px sans-serif';cx.textAlign='center';[0,90,180,270,360].forEach(a=>cx.fillText(a+'°',xp(a),196-5));
+  cx.fillStyle='rgba(255,255,255,0.38)';cx.font='9px sans-serif';cx.textAlign='center';cx.fillText('sem.(+)',xp(90),P.t+9);cx.fillText('sem.(−)',xp(270),P.t+9);
+  cx.fillStyle='rgba(255,255,255,0.38)';cx.font='9px sans-serif';cx.textAlign='left';cx.fillText('Amplitud (%)',P.l+2,P.t+8);
+}
+
+const NORMS={ok:{int:'<strong>Ref.:</strong> IEC 60270:2000 §6, IEEE Std 400-2012, IEC 62478:2016 — DP interna en umbral aceptable.',ext:'<strong>Ref.:</strong> IEC 60815-1:2008, CIGRÉ TB 654 — DP externa aceptable.',sup:'<strong>Ref.:</strong> IEC 60270:2000 §5, IEC 62478:2016, IEEE 1434-2014 — DP superficial aceptable.',oth:'<strong>Ref.:</strong> IEC 60270:2000 §5 — Tipo no identificado.'},watch:{int:'<strong>Ref.:</strong> IEC 60270:2000 §8, IEEE 400.3-2006, CIGRÉ TB 841 — DP interna creciente.',ext:'<strong>Ref.:</strong> IEC 60815-1/2/3, CIGRÉ TB 361 — Corona creciente.',sup:'<strong>Ref.:</strong> IEC 60270:2000, IEC 62478:2016, IEEE 48-2009 — DP superficial en vigilancia.',oth:'<strong>Ref.:</strong> IEC 60270:2000 §5 — Tipo no identificado.'},prog:{int:'<strong>Ref.:</strong> IEC 60270:2000 §9, IEEE 400-2012 §9, CIGRÉ TB 841 — DP interna significativa.',ext:'<strong>Ref.:</strong> IEC 60815-3, CIGRÉ TB 654 — DP externa significativa.',sup:'<strong>Ref.:</strong> IEEE 48-2009 §8, IEC 60270:2000 — DP superficial significativa.',oth:'<strong>Ref.:</strong> IEC 60270:2000 §5.'},urg:{int:'<strong>Ref.:</strong> IEC 60270:2000 §10, IEEE 400-2012 §10, CIGRÉ TB 841, IEC 60840/62067.',ext:'<strong>Ref.:</strong> IEC 60071-1:2019, CIGRÉ TB 654, IEC 60305, IEC 60433.',sup:'<strong>Ref.:</strong> IEEE 48-2009 §9, IEC 62067:2011.',oth:'<strong>Ref.:</strong> IEC 60270:2000 §5.'},oth:{int:'<strong>Ref.:</strong> IEC 60270:2000 §5.',ext:'<strong>Ref.:</strong> IEC 60270:2000 §5.',sup:'<strong>Ref.:</strong> IEC 60270:2000 §5.',oth:'<strong>Ref.:</strong> IEC 60270:2000 §5.'}};
+const ACTS={ok:{c:'#16a34a',t:'Sin intervención requerida — continuar monitoreo en ciclo normal',o:{int:['Amplitud dentro del rango aceptable','Programar próxima medición según ciclo estándar','Mantener registro histórico'],ext:['DP externa en niveles residuales','Inspección visual próxima ronda','Sin acción correctiva requerida'],sup:['DP superficial en nivel aceptable','Mantener ciclo estándar','Sin acción requerida'],oth:['Mantener ciclo estándar','Solicitar análisis complementario','Documentar medición']}},watch:{c:'#ca8a04',t:'Vigilancia intensiva — aumentar frecuencia a ciclo mensual',o:{int:['Amplitud supera umbral — documentar evolución','Confirmación en ≤ 30 días','Si escala → intervención programada'],ext:['DP creciente — verificar contaminación','Inspección visual detallada','Evaluar limpieza en próxima ventana'],sup:['DP superficial en crecimiento','Verificar humedad y sellado','Medir resistencia si tendencia crece'],oth:['Mantener ciclo estándar','Solicitar análisis complementario','Documentar medición']}},prog:{c:'#ea580c',t:'Intervención programada — incluir en próxima ventana de mantenimiento',o:{int:['DP significativa — deterioro progresivo','Complementar con termografía','Planificar sustitución'],ext:['DP externa significativa — posible contaminación','Programar limpieza','Evaluar compuesto hidrofóbico'],sup:['DP superficial significativa','Revisar y re-instalar terminaciones','Verificar torques y sellado'],oth:['Mantener ciclo estándar','Solicitar análisis complementario','Documentar']}},urg:{c:'#dc2626',t:'INTERVENCIÓN URGENTE — notificar a operaciones en ≤ 24 horas',o:{int:['DP crítica — riesgo inminente','Notificar centro de control','Reemplazar — no reconectar sin PRPD de validación'],ext:['DP externa crítica — riesgo de flashover','Descargo prioritario','Reemplazar aisladores dañados'],sup:['DP superficial crítica','Reemplazar terminación(es)','Validación PRPD obligatoria'],oth:['Mantener ciclo estándar','Solicitar análisis complementario','Documentar']}},oth:{c:'#6b7280',t:'Descarga no identificada — mantener ciclo estándar',o:{int:['Mantener ciclo estándar','Solicitar análisis complementario','Documentar'],ext:['Mantener ciclo estándar','Solicitar análisis complementario','Documentar'],sup:['Mantener ciclo estándar','Solicitar análisis complementario','Documentar'],oth:['Mantener ciclo estándar','Solicitar análisis complementario','Documentar']}}};
+
 function upd(){
   pat=document.getElementById('pat').value;
   const dCtrl=document.getElementById('pat-d-ctrl');if(dCtrl)dCtrl.style.display=pat==='D'?'block':'none';
@@ -448,8 +868,10 @@ function upd(){
   const act=ACTS[k];document.getElementById('dl').textContent=LVL[k];document.getElementById('dl').style.color=act.c;document.getElementById('rt').style.borderColor=act.c;document.getElementById('abox').style.borderLeftColor=act.c;document.getElementById('at').style.color=act.c;document.getElementById('at').textContent=act.t;
   const dpKey=(dp in act.o)?dp:'oth';document.getElementById('ao').innerHTML=act.o[dpKey].map(x=>`<li>${x}</li>`).join('');
   document.getElementById('norm-box').style.display='block';document.getElementById('norm-text').innerHTML=NORMS[k][dp]||NORMS[k].oth;
-  const th=TH[dp]||TH.sup;document.getElementById('tn').textContent=`Umbrales DP ${DPN[dp]}: aceptable < ${th[0]}% · vigilancia ${th[0]}–${th[1]}% · programado ${th[1]}–${th[2]}% · urgente > ${th[2]}%`;
-  draw();updateICDSummary();
+  const th=TH[dp]||TH.sup;document.getElementById('tn').textContent=`Umbrales DP ${DPN[dp]}: aceptable < ${th[0]}% · vigilancia ${th[0]}–${th[1]}% · prog. ${th[1]}–${th[2]}% · urgente > ${th[2]}%`;
+  draw();
+  if(digPts.length)setTimeout(drawDigPRPD,0);
+  updateICDSummary();
 }
 function asymLabel(v){if(v===0)return'Nivelado';const p=Math.abs(v)+'%';return v<0?`${p} sem.(+) 90°`:`${p} sem.(−) 270°`;}
 function setDP(t){dp=t;document.getElementById('bi').className='dpb'+(t==='int'?' ai':'');document.getElementById('be').className='dpb'+(t==='ext'?' ae':'');document.getElementById('bs').className='dpb'+(t==='sup'?' as':'');document.getElementById('bo').className='dpb'+(t==='oth'?' ao':'');const db=document.getElementById('det-badge');if(db.textContent){const cm={int:'danger',ext:'warning',sup:'info',oth:'secondary'};const c=cm[t]||'secondary';db.style.background=`var(--color-background-${c})`;db.style.color=`var(--color-text-${c})`;}upd();}
@@ -457,6 +879,6 @@ function sA(v){amp=v;document.getElementById('va').textContent=Math.round(v)+'%'
 function sB(v){asym=v;document.getElementById('vb').textContent=asymLabel(v);upd();}
 function sC(v){dens=+v;document.getElementById('vc').textContent=DL[dens];upd();}
 function sOv(v){overlayOpacity=v;document.getElementById('vov').textContent=v+'%';draw();}
-window.addEventListener('resize',()=>{if(cv.offsetWidth)draw();},{passive:true});
+window.addEventListener('resize',()=>{if(cv.offsetWidth)draw();if(digPts.length&&document.getElementById('dig-pnl').style.display!=='none')drawDigPRPD();},{passive:true});
 setTimeout(()=>{setDP('int');updateConfidence();updateICDSummary();},80);
 </script>
